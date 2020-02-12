@@ -1,0 +1,5 @@
+lampadina sala 1;2;1;1;gruppo 0:sala
+lampadina sala 2;3;0;1;gruppo 0:sala
+lampadina camera padronale;4;0;1;gruppo 0:camere
+lampadina camera giovani;5;0;1;gruppo 0:camere
+lampadina test;9;0;1;gruppo 0
