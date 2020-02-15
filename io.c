@@ -4,9 +4,6 @@
 #include <fcntl.h>
 #include "io.h"
 
-static int portNum = -1;
-static int IO_dev = -1;
-
 int max = 0;
 
 //Inizializzazione
@@ -31,7 +28,7 @@ int IO_init_usb(char *devName)  //Da file (e.g. usb)
 
     if(IO_dev == IO_NOT_ASSIGNED)  //Se inizializzazione non ancora fatta
     {
-        portNum = RS232_GetPortnr(devName);
+        int portNum = RS232_GetPortnr(devName);
         if(portNum < 0) flagErr = 1;
         else if(RS232_OpenComport(portNum, BDRATE, MODE,FLOWCTRL) != 0) flagErr = 1;
         
@@ -45,8 +42,6 @@ int IO_init_usb(char *devName)  //Da file (e.g. usb)
         flagErr = flagErr || (RS232_PollComport(IO_dev,(char*)&max,sizeof(char)) != sizeof(char));  //Leggo il massimo pin che è in grado di gestire la periferica
     }
     else flagErr = 1;   //Se inizializzazione fatta
-
-    if(IO_dev >= 0) RS232_CloseComport(IO_dev);
 
     return -1 * flagErr;
 }
@@ -65,17 +60,12 @@ int IO_write(int pin, int value)
     }
     else if(!flagErr && IO_dev > 0) //usb
     {
-        if(RS232_OpenComport(portNum, BDRATE, MODE,FLOWCTRL) != 0) flagErr = 1;
-        else IO_dev = portNum;
-
         char buffer[8];
         sprintf(buffer,"SET;%d;%d\n",pin,value);
-        flagErr = flagErr || (RS232_SendBuf(IO_dev,buffer,8*sizeof(char)) < 0);
+        RS232_SendBuf(IO_dev,buffer,8*sizeof(char));
 
         flagErr = (RS232_PollComport(IO_dev,buffer,sizeof(char)) != 1);
         flagErr = flagErr || buffer[0] == IO_ERR_RESPONSE || buffer[0] != IO_OK_RESPONSE;
-
-        RS232_CloseComport(IO_dev);
     }
 
     return -1 * flagErr;
@@ -90,14 +80,9 @@ int IO_read(int pin, int *value)
 //Chiusura
 int IO_close(void)
 {
-    int flagErr = 0;
-
     if(IO_dev >= 0)
     {
-        if(RS232_OpenComport(portNum, BDRATE, MODE,FLOWCTRL) != 0) flagErr = 1;
-        else IO_dev = portNum;
-
-        flagErr || RS232_SendByte(IO_dev,IO_GOODBYE_MESSAGE);
+        RS232_SendByte(IO_dev,IO_GOODBYE_MESSAGE);
         RS232_CloseComport(IO_dev);  //File
     }
 

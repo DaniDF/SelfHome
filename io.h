@@ -1,6 +1,8 @@
 #include "hardwareDefines.h"
 #include "rs232.h"
 
+static int IO_dev = -1;
+
 #ifndef IO_WELCOME_MESSAGE
 	#define IO_WELCOME_MESSAGE 0x7E
 #endif
