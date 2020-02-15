@@ -5,7 +5,11 @@
 #endif
 
 #ifndef MAX_TO_SHUT
-	#define MAX_TO_SHUT 10
+	#ifdef MAX_DEVICE
+		#define MAX_TO_SHUT MAX_DEVICE
+	#else
+		#define MAX_TO_SHUT 10
+	#endif
 #endif
 
 #ifndef MIN_PULSE_DURATION

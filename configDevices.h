@@ -3,6 +3,8 @@
 #include <unistd.h>
 #include <fcntl.h>
 
+#define MAX_DEVICE 20
+
 #define MAX_NAME_LENGTH 32
 #define MAX_GROUP_NAME_LENGTH 32
 #define MAX_GROUP_PER_DEVICE 8
@@ -24,13 +26,9 @@ typedef struct deviceStruct
     short pin;
     short defaultStatus;
     short changeable;
-} Device;
-
-typedef struct deviceStatusStruct
-{
-    Device *device;
+    short pulse;
     short status;
-} DeviceStatus;
+} Device;
 
 int loadDevices(char *fileName, Device** result, int len);
 

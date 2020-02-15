@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
 	write(STDOUT,"Avvio server\n",13*sizeof(char));
 	write(STDOUT,"Carico dispositivi\t",19*sizeof(char));
 
-	Device *devices[20];
+	Device *devices[MAX_DEVICE];
 	int contDevices = loadDevices(argv[2],devices,20);
 	if(contDevices < 0) perror("Errore caricamento dispositivi"), exit(-2);
 
@@ -321,9 +321,17 @@ int changeRequestReply(char *buffer, Device *devices[], int contDevices)
 
 					if(contToShut+1 > MAX_TO_SHUT) {usleep(MIN_PULSE_DURATION); kill(getpid(),SIGALRM); }
 
-					flagErr = flagErr || (IO_write(devices[cont]->pin,HIGH) < 0);
-
-					toShut[contToShut++] = devices[cont]->pin;
+					if(devices[cont]->pulse)
+					{
+						flagErr = flagErr || (IO_write(devices[cont]->pin,HIGH) < 0);
+						toShut[contToShut++] = devices[cont]->pin;
+					}
+					else
+					{
+						flagErr = flagErr || (IO_write(devices[cont]->pin,!devices[cont]->status) < 0);
+						if(!flagErr) devices[cont]->status = !devices[cont]->status;
+					}
+					
 				}
 			}
 
@@ -341,9 +349,16 @@ int changeRequestReply(char *buffer, Device *devices[], int contDevices)
 
 						if(contToShut+1 > MAX_TO_SHUT) {usleep(MIN_PULSE_DURATION); kill(getpid(),SIGALRM); }
 
-						flagErr = flagErr || (IO_write(devices[contD]->pin,HIGH) < 0);
-
-						toShut[contToShut++] = devices[contD]->pin;
+						if(devices[contD]->pulse)
+						{
+							flagErr = flagErr || (IO_write(devices[contD]->pin,HIGH) < 0);
+							toShut[contToShut++] = devices[contD]->pin;
+						}
+						else
+						{
+							flagErr = flagErr || (IO_write(devices[contD]->pin,!devices[contD]->status) < 0);
+							if(!flagErr) devices[contD]->status = !devices[contD]->status;
+						}
 					}
 				}
 			}

@@ -20,6 +20,7 @@ int loadDevices(char *fileName, Device** result, int len)
             line[contLine] = '\0';
             
             device = (Device*)(malloc(sizeof(Device)));
+            device->status = 0;
             result[contDevice] = device;
 
             int offset = 0;
@@ -95,7 +96,28 @@ int loadDevices(char *fileName, Device** result, int len)
             flagErr = flagErr || (offset >= contLine);
             flagErr = flagErr || line[offset++] != FIELDS_SEPARATOR;
             flagErr = flagErr || (offset >= contLine);
-            
+
+            char pulse[2];
+            int contPulse = 0;
+            if(!flagErr)
+            {
+                while(!flagErr && line[offset] != FIELDS_SEPARATOR)
+                {
+                    if(contPulse < 2 - 1 && offset < contLine && (line[offset] == '0' || line[offset] == '1')) pulse[contPulse++] = line[offset++];
+                    else flagErr = 1;
+                }
+            }
+
+            if(!flagErr)
+            {
+                pulse[contPulse] = '\0';
+                device->pulse = atoi(pulse);
+            }
+
+            flagErr = flagErr || (offset >= contLine);
+            flagErr = flagErr || line[offset++] != FIELDS_SEPARATOR;
+            flagErr = flagErr || (offset >= contLine);
+
             device->contGroup = 0;
 
             for(int flagStop = 0; !flagErr && !flagStop && offset < contLine; device->contGroup++)
