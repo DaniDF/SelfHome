@@ -145,12 +145,15 @@ int main(int argc, char *argv[])
 					else if(flagErr && sendto(sockUDP,"ERR",4*sizeof(char),0,(struct sockaddr*)&addrClient,lenClient) < 0) perror("Errore send");
 				}
 				else
-				{			
-					int flagErr = changeRequestReply(buffer,devices,contDevices);
+				{
+					int result = changeRequestReply(buffer,devices,contDevices);
+					char sResult[4];
+					if(result < 0) sprintf(sResult,"ERR");
+					else if(result == 0) sprintf(sResult,"OK");
+					else sprintf(sResult,"%d",result - 1);
 
-					printf("Rispondo a %s con messaggio %s\n\n",inet_ntoa(addrClient.sin_addr),(flagErr)? "ERR":"OK");
-					if(!flagErr && sendto(sockUDP,"OK",3*sizeof(char),0,(struct sockaddr*)&addrClient,lenClient) < 0) perror("Errore scrittura");
-					else if(flagErr && sendto(sockUDP,"ERR",4*sizeof(char),0,(struct sockaddr*)&addrClient,lenClient) < 0) perror("Errore scrittura");
+					printf("Rispondo a %s con messaggio %s\n\n",inet_ntoa(addrClient.sin_addr),sResult);
+					if(sendto(sockUDP,sResult,(strlen(sResult)+1)*sizeof(char),0,(struct sockaddr*)&addrClient,lenClient) < 0) perror("Errore scrittura");
 				}
 			}
 		}//Fine ISSET UDP
@@ -270,6 +273,8 @@ char *wayReply(int port)
 int changeRequestReply(char *buffer, Device *devices[], int contDevices)
 {
 	//PROTOCOLLO: SET/GET; DISP/GRUP; nomeDispositivo/numeGruppo; statoDaSettare (SENZA SPAZI)
+	int result = 0;	//Caso GET: se !flagErr allora result == 1 => OFF; result == 2 => ON
+						//Caso SET: non settato;
 	int bufferLen = strlen(buffer);
 	int flagErr = bufferLen < 13;
 
@@ -281,26 +286,49 @@ int changeRequestReply(char *buffer, Device *devices[], int contDevices)
 	else if(!flagErr && strcmp(tipoOp,"SET") == 0) op = 2;
 	else flagErr = 1;
 
+	char tipoDG[5]; tipoDG[4] = '\0';
+	int flagDisp = -1;
+	if(!flagErr) strncpy(tipoDG,buffer+3+1,4);
+	if(!flagErr && strcmp(tipoDG,"DISP") == 0) flagDisp = 1;
+	else if(!flagErr && strcmp(tipoDG,"GRUP") == 0) flagDisp = 0;
+	else flagErr = 1;
+
+	char name[MAX(MAX_NAME_LENGTH,MAX_GROUP_NAME_LENGTH)];
+	int contName = 0;
+	int offset = 9;
+
+	while(!flagErr && offset < bufferLen && buffer[offset] != FIELDS_SEPARATOR) name[contName++] = buffer[offset++];
+	name[contName] = '\0';
+
 	if(!flagErr && op == 1)
 	{
-		//TODO implementare richiesta stato dispositivo
+		//TODO implementare alla richiesta stato dispositivo lettura fisica dello stato salvataggio in devices[X]->status e invio al client
+		flagErr = flagErr || offset != bufferLen;
+
+		int flagFind = 0;
+
+		if(!flagErr && flagDisp)	//Per dispositivo
+		{
+			for(int cont = 0; !flagErr && !flagFind && cont < contDevices; cont++)
+			{
+				if(strcmp(name,devices[cont]->name) == 0)
+				{
+					flagErr = flagErr || devices[cont]->pulse;
+					if(!flagErr) result = devices[cont]->status + 1;	//devices[cont]->status (range 0 oppure 1) result (range 1 oppure 2) per questo il '+1'
+					flagFind = 1;
+					printf("flagErr = %d\tresult = %d\n",flagErr,result);
+				}
+			}
+		}
+		else if(!flagErr && !flagDisp)
+		{
+			flagErr = 1;
+		}
+
+		flagErr = flagErr || !flagFind;
 	}
 	else if(!flagErr && op == 2)
 	{
-		char tipoDG[5]; tipoDG[4] = '\0';
-		int flagDisp = -1;
-		if(!flagErr) strncpy(tipoDG,buffer+3+1,4);
-		if(!flagErr && strcmp(tipoDG,"DISP") == 0) flagDisp = 1;
-		else if(!flagErr && strcmp(tipoDG,"GRUP") == 0) flagDisp = 0;
-		else flagErr = 1;
-
-		char name[MAX(MAX_NAME_LENGTH,MAX_GROUP_NAME_LENGTH)];
-		int contName = 0;
-		int offset = 9;
-
-		while(!flagErr && offset < bufferLen && buffer[offset] != FIELDS_SEPARATOR) name[contName++] = buffer[offset++];
-		name[contName] = '\0';
-
 		flagErr = flagErr || offset >= bufferLen;
 		flagErr = flagErr || buffer[offset] != FIELDS_SEPARATOR;
 		flagErr = flagErr || ++offset > bufferLen;
@@ -368,5 +396,5 @@ int changeRequestReply(char *buffer, Device *devices[], int contDevices)
 		flagErr = flagErr || !flagFind;
 	}
 
-	return flagErr;
+	return (flagErr)? -1 * flagErr : result;
 }
