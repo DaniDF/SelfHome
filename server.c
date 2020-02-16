@@ -317,7 +317,6 @@ int changeRequestReply(char *buffer, Device *devices[], int contDevices)
 					flagErr = flagErr || devices[cont]->pulse;
 					if(!flagErr) result = devices[cont]->status + 1;	//devices[cont]->status (range 0 oppure 1) result (range 1 oppure 2) per questo il '+1'
 					flagFind = 1;
-					printf("flagErr = %d\tresult = %d\n",flagErr,result);
 				}
 			}
 		}
@@ -357,8 +356,8 @@ int changeRequestReply(char *buffer, Device *devices[], int contDevices)
 					}
 					else
 					{
-						flagErr = flagErr || (IO_write(devices[cont]->pin,!devices[cont]->status) < 0);
-						if(!flagErr) devices[cont]->status = !devices[cont]->status;
+						flagErr = flagErr || (IO_write(devices[cont]->pin,stato) < 0);
+						if(!flagErr) devices[cont]->status = stato;
 					}
 					
 				}
