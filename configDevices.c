@@ -20,7 +20,7 @@ int loadDevices(char *fileName, Device** result, int len)
             line[contLine] = '\0';
             
             device = (Device*)(malloc(sizeof(Device)));
-            device->status = 0;
+            device->status = -1;
             result[contDevice] = device;
 
             int offset = 0;

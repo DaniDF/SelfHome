@@ -71,6 +71,7 @@ int main(int argc, char *argv[])
 		else printf("\rInizializzazione %d dispositivi\t",cont+1);
 
 		IO_write(devices[cont]->pin,LOW);
+		if(!devices[cont]->pulse) devices[cont]->status = 0;
 	}
 
 	printf("Fatto\n");

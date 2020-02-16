@@ -36,7 +36,7 @@ static int IO_dev = -1;
 #endif
 
 #ifndef BDRATE
-	#define BDRATE 9600
+	#define BDRATE 115200
 #endif
 
 #ifndef MODE
