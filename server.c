@@ -10,6 +10,7 @@
 #include <sys/select.h>
 #include <errno.h>
 #include "configDevices.h"
+#include "configAutomation.h"
 #include "hardwareDefines.h"
 #include "io.h"
 
@@ -19,6 +20,10 @@
 
 #ifndef MULTICAST_ADDR
 	#define MULTICAST_ADDR "224.24.46.24"
+#endif
+
+#ifndef DIR_AUTOMATIONS
+	#define DIR_AUTOMATIONS "automations"
 #endif
 
 #define MAX(x,y) (x>y)? x:y
@@ -31,6 +36,10 @@ int changeRequestReply(char *buffer, Device *devices[], int contDevices);
 
 int toShut[MAX_TO_SHUT];
 int contToShut = 0;
+
+Automation *automations[MAX_AUTOMATIONS];
+int contAutomations;
+short flagModified = 0;
 
 int main(int argc, char *argv[])
 {
@@ -52,16 +61,22 @@ int main(int argc, char *argv[])
 	Device *devices[MAX_DEVICE];
 	int contDevices = loadDevices(argv[2],devices,20);
 	if(contDevices < 0) perror("Errore caricamento dispositivi"), exit(-2);
-
 	write(STDOUT,"Fatto\n",6*sizeof(char));
+
+	write(STDOUT,"Carico automazioni\t",19*sizeof(char));
+	contAutomations = loadAutomations(DIR_AUTOMATIONS,automations,50);
+	if(contAutomations < 0) perror("Errore caricamento automazioni"), exit(-3);
+	write(STDOUT,"Fatto\t",6*sizeof(char));
+	printf(": caricat%c %d automazion%c\n",(contAutomations > 1)? 'e':'a',contAutomations,(contAutomations > 1)? 'i':'e');
+
 	write(STDOUT,"Inizializzazione periferica\t",28*sizeof(char));
 
 	if(argc == 4 && IO_init_usb(argv[3]) < 0)
 	{
 		perror("Errore inizializzazione periferica esterna\n\tprovo con GPIO!");
-		if(IO_init() < 0) perror("Errore inizializzazione anche con GPIO"), exit(-2);
+		if(IO_init() < 0) perror("Errore inizializzazione anche con GPIO"), exit(-4);
 	}
-	else if(argc == 3 && IO_init() < 0) perror("Errore inizializzazione GPIO"), exit(-2);
+	else if(argc == 3 && IO_init() < 0) perror("Errore inizializzazione GPIO"), exit(-4);
 
 	write(STDOUT,"Fatto\n",6*sizeof(char));
 
@@ -89,23 +104,23 @@ int main(int argc, char *argv[])
 
 	//UDP
 	int sockUDP;
-	if((sockUDP = socket(AF_INET,SOCK_DGRAM,0)) < 0) perror("Errore creazione socket UDP"), exit(-3);
+	if((sockUDP = socket(AF_INET,SOCK_DGRAM,0)) < 0) perror("Errore creazione socket UDP"), exit(-5);
 	int on = 1;
-	if(setsockopt(sockUDP, SOL_SOCKET, SO_REUSEADDR, &on, sizeof(on)) < 0) perror("Errore opzioni UDP"), exit(-3);
+	if(setsockopt(sockUDP, SOL_SOCKET, SO_REUSEADDR, &on, sizeof(on)) < 0) perror("Errore opzioni UDP"), exit(-5);
 
-	if(bind(sockUDP,(struct sockaddr*)&addrServer,sizeof(addrServer)) < 0) perror("Errore bind UDP"), exit(-4);
+	if(bind(sockUDP,(struct sockaddr*)&addrServer,sizeof(addrServer)) < 0) perror("Errore bind UDP"), exit(-6);
 
 	struct ip_mreq mreq;
 	mreq.imr_multiaddr.s_addr = inet_addr(MULTICAST_ADDR);
 	mreq.imr_interface.s_addr = INADDR_ANY;
-	if(setsockopt(sockUDP,IPPROTO_IP,IP_ADD_MEMBERSHIP,&mreq,sizeof(mreq)) < 0) perror("Errore opzioni SSDP"), exit(-3);
+	if(setsockopt(sockUDP,IPPROTO_IP,IP_ADD_MEMBERSHIP,&mreq,sizeof(mreq)) < 0) perror("Errore opzioni SSDP"), exit(-5);
 	//Fine UDP
 
 	//TCP
 	int sockTCP;
-	if((sockTCP = socket(AF_INET,SOCK_STREAM,0)) < 0) perror("Errore creazione socket TCP"), exit(-3);
-	if(setsockopt(sockTCP, SOL_SOCKET, SO_REUSEADDR, &on, sizeof(on)) < 0) perror("Errore opzioni TCP"), exit(-3);
-	if(bind(sockTCP,(struct sockaddr*)&addrServer,sizeof(addrServer)) < 0) perror("Errore bind TCP"), exit(-4);
+	if((sockTCP = socket(AF_INET,SOCK_STREAM,0)) < 0) perror("Errore creazione socket TCP"), exit(-5);
+	if(setsockopt(sockTCP, SOL_SOCKET, SO_REUSEADDR, &on, sizeof(on)) < 0) perror("Errore opzioni TCP"), exit(-5);
+	if(bind(sockTCP,(struct sockaddr*)&addrServer,sizeof(addrServer)) < 0) perror("Errore bind TCP"), exit(-6);
 	if(listen(sockTCP,5) < 0) perror("Errore listen"), exit(-5);
 	//Fine TCP
 
@@ -122,7 +137,7 @@ int main(int argc, char *argv[])
 		if(select(MAX(sockUDP,sockTCP)+1,&setRead,NULL,NULL,NULL) < 0)
 		{
 			if(errno == EINTR) continue;
-			else perror("Errore select"), exit(-6);
+			else perror("Errore select"), exit(-7);
 		}
 
 		char buffer[255];
@@ -223,6 +238,11 @@ void softStop(int numSig)
 
 void shut(int numSig)
 {
+	if(flagModified)
+	{
+		storeAutomations(DIR_AUTOMATIONS,automations,contAutomations);
+	}
+	
 	for(int cont = 0; cont < contToShut; cont++)
 	{
 		IO_write(toShut[cont],LOW);
@@ -384,8 +404,8 @@ int changeRequestReply(char *buffer, Device *devices[], int contDevices)
 						}
 						else
 						{
-							flagErr = flagErr || (IO_write(devices[contD]->pin,!devices[contD]->status) < 0);
-							if(!flagErr) devices[contD]->status = !devices[contD]->status;
+							flagErr = flagErr || (IO_write(devices[contD]->pin,stato) < 0);
+							if(!flagErr) devices[contD]->status = stato;
 						}
 					}
 				}
