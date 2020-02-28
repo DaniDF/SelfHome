@@ -1,0 +1,132 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include "configDevices.h"
+#include "configAutomation.h"
+#include "io.h"
+
+int serverAutomation(int *channel, Device **devices, int lenDevices, Automation **automations, int lenAutomations, int *toShut, int *contToShut)
+{
+    //printf("Server Automazioni\n");
+
+    int contDelated = 0;
+
+    for(int contAutomation = 0; contAutomation < lenAutomations; contAutomation++)
+    {
+        int flagFind = 0;
+        for(int contDevice = 0; !flagFind && contDevice < lenDevices; contDevice++)
+        {
+            if(strcmp(automations[contAutomation]->type,"DISP") == 0)
+            {
+                if(strcmp(devices[contDevice]->name,automations[contAutomation]->name) == 0) flagFind = 1;
+            }
+            else if(strcmp(automations[contAutomation]->type,"GRUP") == 0)
+            {
+                for(int contGroup = 0; !flagFind && contGroup < devices[contDevice]->contGroup; contGroup++)
+                {
+                    if(strcmp(devices[contDevice]->groups[contGroup],automations[contAutomation]->name) == 0) flagFind = 1;
+                }
+            }
+        }
+
+        if(flagFind) automations[contAutomation-contDelated] = automations[contAutomation];
+        else contDelated++;
+    }
+
+    lenAutomations -= contDelated;
+
+    if(contDelated > 0)
+    {
+        printf("Trovat%c %d automazion%c non valid%c!\n",(contDelated < 10)? 'a':'e',
+                                                        contDelated,(contDelated < 10)? 'e':'i',
+                                                        (contDelated < 10)? 'a':'e');
+    }
+
+    int contAutomation = 0;
+
+    while(1)
+    {
+        time_t rowtime;
+        time(&rowtime);
+        struct tm *time = localtime(&rowtime);
+
+        int date = time->tm_hour * 10000 + time->tm_min * 100 + time->tm_sec;
+
+        int afterStart = 0;
+        afterStart = automations[contAutomation]->startDays[time->tm_wday];
+        int startDate = automations[contAutomation]->startHour * 10000;
+        startDate += automations[contAutomation]->startMinute * 100;
+        startDate += automations[contAutomation]->startSec;
+
+        afterStart = afterStart && startDate <= date;
+
+        int beforeStop = 0;
+        beforeStop = automations[contAutomation]->stopDays[time->tm_wday];
+        int stopDate = automations[contAutomation]->stopHour * 10000;
+        stopDate += automations[contAutomation]->stopMinute * 100;
+        stopDate += automations[contAutomation]->stopSec;
+
+        beforeStop = beforeStop && stopDate > date;
+
+        int value = (afterStart == 1) && (beforeStop == 1);
+
+        int flagFind = 0;
+        for(int contDevice = 0; !flagFind && contDevice < lenDevices; contDevice++)
+        {
+            if(strcmp(automations[contAutomation]->type,"DISP") == 0)
+            {
+                if(strcmp(devices[contDevice]->name,automations[contAutomation]->name) == 0 && devices[contDevice]->status != value)
+                {
+                    flagFind = 1;
+                    printf("Automazione dispositivo %s valore %d\n\n",devices[contDevice]->name,value);
+
+                    if(devices[contDevice]->pulse)
+					{
+						IO_write(devices[contDevice]->pin,HIGH);
+						toShut[(*contToShut)++] = devices[contDevice]->pin;
+                        devices[contDevice]->status = value;
+					}
+					else
+					{
+						IO_write(devices[contDevice]->pin,value);
+						devices[contDevice]->status = value;
+					}
+                }
+            }
+            else if(strcmp(automations[contAutomation]->type,"GRUP") == 0)
+            {
+                for(int contGroup = 0; !flagFind && contGroup < devices[contDevice]->contGroup; contGroup++)
+                {
+                    if(strcmp(devices[contDevice]->groups[contGroup],automations[contAutomation]->name) == 0 && devices[contDevice]->status != value)
+                    {
+                        flagFind = 1;
+                        printf("Automazione dispositivo %s valore %d\n\n",devices[contDevice]->name,value);
+                        
+                        if(devices[contDevice]->pulse)
+                        {
+                            IO_write(devices[contDevice]->pin,HIGH);
+                            toShut[(*contToShut)++] = devices[contDevice]->pin;
+                            devices[contDevice]->status = value;
+                        }
+                        else
+                        {
+                            IO_write(devices[contDevice]->pin,value);
+                            devices[contDevice]->status = value;
+                        }
+                    }
+                }
+            }
+
+            if(flagFind) alarm(1);
+        }
+
+        contAutomation++;
+        if(contAutomation == lenAutomations)
+        {
+            contAutomation = 0;
+            sleep(1);
+        }
+    }
+
+    exit(0);
+}

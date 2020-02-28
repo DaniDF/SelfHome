@@ -21,14 +21,13 @@ int loadAutomations(char *dirName,Automation** automations,int len)
             flagErr = flagErr || strlen(fileDir->d_name) < 5;
             int par;
             flagErr = flagErr || ((par = loadSingleFileAutomation(fileDir->d_name,automations,result,len)) < 0);
-
             if(!flagErr) result += par;
         }
     }
 
     closedir(dirIn);
 
-    flagErr = flagErr || chdir("..") < 0;
+    flagErr = flagErr || (chdir("..") < 0);
 
     return (flagErr)? -1:result;
 }
@@ -104,7 +103,7 @@ int loadSingleFileAutomation(char *fileName,Automation** automations, int start,
         else if(contCar >= 17 && contCar < 24)
         {
             if(car < '0' || car > '1') flagErr = 1;
-            else automation->startDays[contCar-17] = car - '0';
+            else automation->stopDays[contCar-17] = car - '0';
         }
         else if(contCar == 24 && car != AUTO_FIELDS_SEPARATOR) flagErr = 1;
         else if(contCar >= 25 && contCar < 27)
@@ -118,8 +117,8 @@ int loadSingleFileAutomation(char *fileName,Automation** automations, int start,
             else
             {
                 temp[2] = '\0';
-                automation->startHour = atoi(temp);
-                if(automation->startHour < 0 || automation->startHour > 23) flagErr = 1;
+                automation->stopHour = atoi(temp);
+                if(automation->stopHour < 0 || automation->stopHour > 23) flagErr = 1;
             }
         }
         else if(contCar >= 28 && contCar < 30)
@@ -133,8 +132,8 @@ int loadSingleFileAutomation(char *fileName,Automation** automations, int start,
             else
             {
                 temp[2] = '\0';
-                automation->startMinute = atoi(temp);
-                if(automation->startMinute < 0 || automation->startMinute > 59) flagErr = 1;
+                automation->stopMinute = atoi(temp);
+                if(automation->stopMinute < 0 || automation->stopMinute > 59) flagErr = 1;
             }
         }
         else if(contCar >= 31 && contCar < 33)
@@ -147,7 +146,7 @@ int loadSingleFileAutomation(char *fileName,Automation** automations, int start,
             if(car == '\n' || car == '\r')
             {
                 temp[2] = '\0';
-                automation->startSec = atoi(temp);
+                automation->stopSec = atoi(temp);
                 strncpy(automation->type,fileName,4);
 
                 if(strcmp(automation->type,"DISP") != 0 && strcmp(automation->type,"GRUP") != 0) flagErr = 1;
@@ -157,7 +156,7 @@ int loadSingleFileAutomation(char *fileName,Automation** automations, int start,
 
                 contCar = -1;
 
-                if(!flagErr) automations[result++] = automation;
+                if(!flagErr) automations[start + result++] = automation;
                 automation = (Automation*)(malloc(sizeof(Automation)));
             }
             else flagErr = 1;

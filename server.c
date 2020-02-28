@@ -26,7 +26,9 @@
 	#define DIR_AUTOMATIONS "automations"
 #endif
 
-#define MAX(x,y) (x>y)? x:y
+#define MAX_3(x,y,z) (x>y)? ((x>z)? x:z) : ((y>z)? y:z)
+
+int serverAutomation(int *channel, Device **devices, int lenDevices, Automation **automations, int lenAutomations, int *toShut, int *contToShut);
 
 void softStop(int numSig);
 void shut(int numSig);
@@ -39,7 +41,7 @@ int contToShut = 0;
 
 Automation *automations[MAX_AUTOMATIONS];
 int contAutomations;
-short flagModified = 1;
+short flagModified = 0;
 
 int main(int argc, char *argv[])
 {
@@ -91,6 +93,19 @@ int main(int argc, char *argv[])
 
 	printf("Fatto\n");
 
+	write(STDOUT,"Avvio gestore automazioni\t",26*sizeof(char));
+	int channel[2];
+	if(pipe(channel) < 0) perror("Errore creazione comunicazione con gestore"), exit(-4);
+	if(!fork())
+	{
+		signal(SIGINT,SIG_DFL);
+		//Funzione gestore automazioni
+		serverAutomation(channel,devices,contDevices,automations,contAutomations,toShut,&contToShut);
+
+		exit(0);
+	}
+	write(STDOUT,"Fatto\n",6*sizeof(char));
+
 	struct sockaddr_in addrServer;
 	memset((char*)&addrServer,0,sizeof(addrServer));
 	addrServer.sin_family = AF_INET;
@@ -133,8 +148,9 @@ int main(int argc, char *argv[])
 		FD_ZERO(&setRead);
 		FD_SET(sockUDP,&setRead);
 		FD_SET(sockTCP,&setRead);
+		FD_SET(channel[0],&setRead);
 
-		if(select(MAX(sockUDP,sockTCP)+1,&setRead,NULL,NULL,NULL) < 0)
+		if(select(MAX_3(sockUDP,sockTCP,channel[0])+1,&setRead,NULL,NULL,NULL) < 0)
 		{
 			if(errno == EINTR) continue;
 			else perror("Errore select"), exit(-7);
@@ -222,6 +238,12 @@ int main(int argc, char *argv[])
 				exit(flagErr);
 			}
 		}//Fine ISSET TCP
+
+		if(FD_ISSET(channel[0],&setRead))	//Gestore automazioni
+		{
+			char car;
+			if(read(channel[0],&car,sizeof(char)) > 0) write(STDOUT,&car,sizeof(char));
+		}
 	}
 
 	perror("Errore server generico");
