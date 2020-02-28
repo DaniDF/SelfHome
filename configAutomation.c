@@ -177,7 +177,7 @@ int storeAutomations(char *dirName,Automation** automations,int len)
     int result = 0;
 
     DIR *dirOut = opendir(dirName);
-    if(dirOut == NULL) flagErr = (mkdir(dirName,S_IRWXU) < 0);
+    if(dirOut == NULL) flagErr = (mkdir(dirName,S_IRUSR | S_IWUSR) < 0);
 
     dirOut = opendir(dirName);
     if(dirOut == NULL) flagErr = 1;
@@ -194,11 +194,12 @@ int storeAutomations(char *dirName,Automation** automations,int len)
     {
         char fileName[512];
         sprintf(fileName,"%s%s",automations[cont]->type,automations[cont]->name);
-        int fileOut = open(fileName,O_WRONLY | O_CREAT);
+        int fileOut = open(fileName,O_WRONLY | O_CREAT,0644);
+        lseek(fileOut,0,SEEK_END);
         flagErr = flagErr || (fileOut < 0);
 
         char outLine[34];
-        sprintf(outLine,"%d%d%d%d%d%d%d;%2d:%2d:%2d;%d%d%d%d%d%d%d;%2d:%2d:%2d\n",
+        sprintf(outLine,"%d%d%d%d%d%d%d;%s%d:%s%d:%s%d;%d%d%d%d%d%d%d;%s%d:%s%d:%s%d\n",
                         automations[cont]->startDays[0],
                         automations[cont]->startDays[1],
                         automations[cont]->startDays[2],
@@ -206,8 +207,11 @@ int storeAutomations(char *dirName,Automation** automations,int len)
                         automations[cont]->startDays[4],
                         automations[cont]->startDays[5],
                         automations[cont]->startDays[6],
+                        (automations[cont]->startHour < 10)? "0":"",
                         automations[cont]->startHour,
+                        (automations[cont]->startMinute < 10)? "0":"",
                         automations[cont]->startMinute,
+                        (automations[cont]->startSec < 10)? "0":"",
                         automations[cont]->startSec,
                         automations[cont]->stopDays[0],
                         automations[cont]->stopDays[1],
@@ -216,8 +220,11 @@ int storeAutomations(char *dirName,Automation** automations,int len)
                         automations[cont]->stopDays[4],
                         automations[cont]->stopDays[5],
                         automations[cont]->stopDays[6],
+                        (automations[cont]->stopHour < 10)? "0":"",
                         automations[cont]->stopHour,
+                        (automations[cont]->stopMinute < 10)? "0":"",
                         automations[cont]->stopMinute,
+                        (automations[cont]->stopSec < 10)? "0":"",
                         automations[cont]->stopSec);
         
         flagErr = flagErr || (write(fileOut,outLine,strlen(outLine)*sizeof(char)) < 0);

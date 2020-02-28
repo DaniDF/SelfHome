@@ -39,7 +39,7 @@ int contToShut = 0;
 
 Automation *automations[MAX_AUTOMATIONS];
 int contAutomations;
-short flagModified = 0;
+short flagModified = 1;
 
 int main(int argc, char *argv[])
 {
@@ -232,17 +232,18 @@ int main(int argc, char *argv[])
 void softStop(int numSig)
 {
 	printf("\rTerminazione pulita\n");
+
+	if(flagModified)
+	{
+		storeAutomations(DIR_AUTOMATIONS,automations,contAutomations);
+	}
+
 	IO_close();
 	exit(0);
 }
 
 void shut(int numSig)
 {
-	if(flagModified)
-	{
-		storeAutomations(DIR_AUTOMATIONS,automations,contAutomations);
-	}
-	
 	for(int cont = 0; cont < contToShut; cont++)
 	{
 		IO_write(toShut[cont],LOW);
