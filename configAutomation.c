@@ -1,12 +1,19 @@
 #include "configAutomation.h"
 
+#ifndef STDERR
+    #define STDERR 2
+#endif
+
 int loadSingleFileAutomation(char *fileName,Automation** automation, int start, int len);
 
 int loadAutomations(char *dirName,Automation** automations,int len)
 {
     int result = 0;
     int flagErr = 0;
-    DIR * dirIn = opendir(dirName);
+    DIR *dirIn = opendir(dirName);
+    if(dirIn == NULL) flagErr = (mkdir(dirName,S_IRUSR | S_IWUSR) < 0);
+
+    dirIn = opendir(dirName);
     if(dirIn == NULL) flagErr = 1;
 
     flagErr = flagErr || chdir(dirName) < 0;
@@ -22,6 +29,12 @@ int loadAutomations(char *dirName,Automation** automations,int len)
             int par;
             flagErr = flagErr || ((par = loadSingleFileAutomation(fileDir->d_name,automations,result,len)) < 0);
             if(!flagErr) result += par;
+            else
+            {
+                write(STDERR,"Errore file: ",13*sizeof(char));
+                write(STDERR,fileDir->d_name,strlen(fileDir->d_name)*sizeof(char));
+                write(STDERR,": ",2*sizeof(char));
+            }
         }
     }
 
