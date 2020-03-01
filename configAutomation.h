@@ -19,6 +19,7 @@ typedef struct automationStruct
     short stopHour;
     short stopMinute;
     short stopSec;
+    short value;
 } Automation;
 
 int loadAutomations(char *dirName,Automation** automations,int len);

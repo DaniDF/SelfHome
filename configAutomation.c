@@ -105,7 +105,7 @@ int loadSingleFileAutomation(char *fileName,Automation** automations, int start,
         }
         else if(contCar == 16)
         {
-            if(car != ';') flagErr = 1;
+            if(car != AUTO_FIELDS_SEPARATOR) flagErr = 1;
             else
             {
                 temp[2] = '\0';
@@ -156,16 +156,27 @@ int loadSingleFileAutomation(char *fileName,Automation** automations, int start,
         }
         else if(contCar == 33)
         {
-            if(car == '\n' || car == '\r')
+            if(car != AUTO_FIELDS_SEPARATOR) flagErr = 1;
+            else
             {
                 temp[2] = '\0';
                 automation->stopSec = atoi(temp);
+                if(automation->stopSec < 0 || automation->stopSec > 59) flagErr = 1;
+            }
+        }
+        else if(contCar == 34)
+        {
+            if(car < '0' || car > '9') flagErr = 1;
+            else automation->value = car - '0';
+            
+        }
+        else if(contCar > 34)
+        {
+            if(car == '\n' || car == '\r')
+            {
                 strncpy(automation->type,fileName,4);
-
                 if(strcmp(automation->type,"DISP") != 0 && strcmp(automation->type,"GRUP") != 0) flagErr = 1;
                 if(!flagErr) strcpy(automation->name,fileName+4);
-
-                flagErr = flagErr || automation->startSec < 0 || automation->startSec > 59;
 
                 contCar = -1;
 
