@@ -84,6 +84,7 @@ int IO_close(void)
     {
         RS232_SendByte(IO_dev,IO_GOODBYE_MESSAGE);
         RS232_CloseComport(IO_dev);  //File
+        close(IO_dev);
     }
 
     IO_dev = IO_NOT_ASSIGNED;

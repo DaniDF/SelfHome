@@ -32,6 +32,7 @@ int serverAutomation(int *channel, Device **devices, int lenDevices, Automation 
 
 void softStop(int numSig);
 void shut(int numSig);
+void exitWithStatus(int status, int pidChild);
 
 char *wayReply(int port);
 int changeRequestReply(char *buffer, Device *devices[], int contDevices);
@@ -95,8 +96,9 @@ int main(int argc, char *argv[])
 
 	write(STDOUT,"Avvio gestore automazioni\t",26*sizeof(char));
 	int channel[2];
-	if(pipe(channel) < 0) perror("Errore creazione comunicazione con gestore"), exit(-4);
-	if(!fork())
+	if(pipe(channel) < 0) perror("Errore creazione comunicazione con gestore"), exitWithStatus(-4,-1);
+	int pidAuto;
+	if(!(pidAuto = fork()))
 	{
 		signal(SIGINT,SIG_DFL);
 		//Funzione gestore automazioni
@@ -119,23 +121,23 @@ int main(int argc, char *argv[])
 
 	//UDP
 	int sockUDP;
-	if((sockUDP = socket(AF_INET,SOCK_DGRAM,0)) < 0) perror("Errore creazione socket UDP"), exit(-5);
+	if((sockUDP = socket(AF_INET,SOCK_DGRAM,0)) < 0) perror("Errore creazione socket UDP"), exitWithStatus(-5,pidAuto);
 	int on = 1;
-	if(setsockopt(sockUDP, SOL_SOCKET, SO_REUSEADDR, &on, sizeof(on)) < 0) perror("Errore opzioni UDP"), exit(-5);
+	if(setsockopt(sockUDP, SOL_SOCKET, SO_REUSEADDR, &on, sizeof(on)) < 0) perror("Errore opzioni UDP"), exitWithStatus(-5,pidAuto);
 
-	if(bind(sockUDP,(struct sockaddr*)&addrServer,sizeof(addrServer)) < 0) perror("Errore bind UDP"), exit(-6);
+	if(bind(sockUDP,(struct sockaddr*)&addrServer,sizeof(addrServer)) < 0) perror("Errore bind UDP"), exitWithStatus(-6,pidAuto);
 
 	struct ip_mreq mreq;
 	mreq.imr_multiaddr.s_addr = inet_addr(MULTICAST_ADDR);
 	mreq.imr_interface.s_addr = INADDR_ANY;
-	if(setsockopt(sockUDP,IPPROTO_IP,IP_ADD_MEMBERSHIP,&mreq,sizeof(mreq)) < 0) perror("Errore opzioni SSDP"), exit(-5);
+	if(setsockopt(sockUDP,IPPROTO_IP,IP_ADD_MEMBERSHIP,&mreq,sizeof(mreq)) < 0) perror("Errore opzioni SSDP"), exitWithStatus(-5,pidAuto);
 	//Fine UDP
 
 	//TCP
 	int sockTCP;
-	if((sockTCP = socket(AF_INET,SOCK_STREAM,0)) < 0) perror("Errore creazione socket TCP"), exit(-5);
-	if(setsockopt(sockTCP, SOL_SOCKET, SO_REUSEADDR, &on, sizeof(on)) < 0) perror("Errore opzioni TCP"), exit(-5);
-	if(bind(sockTCP,(struct sockaddr*)&addrServer,sizeof(addrServer)) < 0) perror("Errore bind TCP"), exit(-6);
+	if((sockTCP = socket(AF_INET,SOCK_STREAM,0)) < 0) perror("Errore creazione socket TCP"), exitWithStatus(-5,pidAuto);
+	if(setsockopt(sockTCP, SOL_SOCKET, SO_REUSEADDR, &on, sizeof(on)) < 0) perror("Errore opzioni TCP"), exitWithStatus(-5,pidAuto);
+	if(bind(sockTCP,(struct sockaddr*)&addrServer,sizeof(addrServer)) < 0) perror("Errore bind TCP"), exitWithStatus(-6,pidAuto);
 	if(listen(sockTCP,5) < 0) perror("Errore listen"), exit(-5);
 	//Fine TCP
 
@@ -153,7 +155,7 @@ int main(int argc, char *argv[])
 		if(select(MAX_3(sockUDP,sockTCP,channel[0])+1,&setRead,NULL,NULL,NULL) < 0)
 		{
 			if(errno == EINTR) continue;
-			else perror("Errore select"), exit(-7);
+			else perror("Errore select"), exitWithStatus(-7,pidAuto);
 		}
 
 		char buffer[255];
@@ -272,6 +274,13 @@ void shut(int numSig)
 	}
 	
 	contToShut = 0;
+}
+
+void exitWithStatus(int status, int pidChild)
+{
+	if(pidChild >= 0) kill(pidChild,SIGKILL);
+	IO_close();
+	exit(status);
 }
 
 //WhereAreYou
