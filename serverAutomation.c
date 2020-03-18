@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <signal.h>
 #include "configDevices.h"
 #include "configAutomation.h"
 #include "io.h"
@@ -80,6 +81,8 @@ int serverAutomation(int *channel, Device **devices, int lenDevices, Automation 
                     flagFind = 1;
                     printf("Automazione dispositivo %s valore %d\n\n",devices[contDevice]->name,automations[contAutomation]->value);
 
+                    if((*contToShut)+1 > MAX_TO_SHUT) {usleep(MIN_PULSE_DURATION); kill(getpid(),SIGALRM); }
+
                     if(devices[contDevice]->pulse)
 					{
 						IO_write(devices[contDevice]->pin,HIGH);
@@ -102,6 +105,8 @@ int serverAutomation(int *channel, Device **devices, int lenDevices, Automation 
                         flagFind = 1;
                         printf("Automazione dispositivo %s valore %d\n\n",devices[contDevice]->name,automations[contAutomation]->value);
                         
+                        if((*contToShut)+1 > MAX_TO_SHUT) {usleep(MIN_PULSE_DURATION); kill(getpid(),SIGALRM); }
+
                         if(devices[contDevice]->pulse)
                         {
                             IO_write(devices[contDevice]->pin,HIGH);
