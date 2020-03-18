@@ -24,6 +24,9 @@ dir="/home/dani/Desktop/SelfHome"
 usb="/dev/ttyACM0"
 logFile="/var/log/selfhome"
 
+oldDir=$PWD
+cd $dir
+
 sleep 10
 
 date > $logFile
@@ -60,7 +63,9 @@ then
 	kill -SIGINT $(ps haux | egrep '"'"'.*SelfHome.*$'"'"' | tr -s '"'"' '"'"' | cut -d'"'"' '"'"' -f2 | sort -n | head -1)
 else
 	'$dir'/./starter.sh&
-fi' > $fileSys
+fi
+
+cd $oldDir' > $fileSys
 
 if [ $? -ne 0 ]
 then
