@@ -5,7 +5,7 @@ flagErr=0
 
 echo "Compilazione eseguibile server"
 
-gcc configAutomation.c configAutomation.h configDefines.h configDevices.c configDevices.h hardwareDefines.h io.c io.h rs232.c rs232.h serverAutomation.c server.c -o server
+gcc "$dir/configAutomation.c" "$dir/configAutomation.h" "$dir/configDefines.h" "$dir/configDevices.c" "$dir/configDevices.h" "$dir/hardwareDefines.h" "$dir/io.c" "$dir/io.h" "$dir/rs232.c" "$dir/rs232.h" "$dir/serverAutomation.c" "$dir/server.c" -o "$dir/server"
 
 if [ $? -eq 0 ]
 then
@@ -36,7 +36,9 @@ then
 	$dir/./server 4000 $dir/devices $usb >> $logFile 2>&1 &
 else
 	$dir/./server 4000 $dir/devices >> $logFile 2>&1 &
-fi' > $dir/starter.sh
+fi
+
+cd $oldDir' > $dir/starter.sh
 
 chmod u+x $dir/starter.sh
 
@@ -63,9 +65,7 @@ then
 	kill -SIGINT $(ps haux | egrep '"'"'.*SelfHome.*$'"'"' | tr -s '"'"' '"'"' | cut -d'"'"' '"'"' -f2 | sort -n | head -1)
 else
 	'$dir'/./starter.sh&
-fi
-
-cd $oldDir' > $fileSys
+fi' > $fileSys
 
 if [ $? -ne 0 ]
 then
@@ -100,7 +100,7 @@ fi
 
 echo "Compilazione eseguibile client"
 
-gcc client.c -o client
+gcc "$dir/client.c" -o "$dir/client"
 
 if [ $? -eq 0 ]
 then
