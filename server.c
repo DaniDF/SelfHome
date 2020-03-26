@@ -35,7 +35,9 @@ void shut(int numSig);
 void exitWithStatus(int status, int pidChild);
 
 char *wayReply(int port);
-int changeRequestReply(char *buffer, Device *devices[], int contDevices);
+int changeRequestReply(char *buffer, Device *devices[], int contDevices, int *channel);
+
+int genAutoService(int *channel, Device *devices[], int contDevices);
 
 int toShut[MAX_TO_SHUT];
 int contToShut = 0;
@@ -97,15 +99,7 @@ int main(int argc, char *argv[])
 	write(STDOUT,"Avvio gestore automazioni\t",26*sizeof(char));
 	int channel[2];
 	if(pipe(channel) < 0) perror("Errore creazione comunicazione con gestore"), exitWithStatus(-4,-1);
-	int pidAuto;
-	if(!(pidAuto = fork()))
-	{
-		signal(SIGINT,SIG_DFL);
-		//Funzione gestore automazioni
-		serverAutomation(channel,devices,contDevices,automations,contAutomations,toShut,&contToShut);
-
-		exit(0);
-	}
+	int pidAuto = genAutoService(channel,devices,contDevices);
 	write(STDOUT,"Fatto\n",6*sizeof(char));
 
 	struct sockaddr_in addrServer;
@@ -145,6 +139,8 @@ int main(int argc, char *argv[])
 
 	write(STDOUT,"Server online\n\n",15*sizeof(char));
 
+	int posChange = -1;
+
 	while(1)
 	{		
 		FD_ZERO(&setRead);
@@ -180,10 +176,15 @@ int main(int argc, char *argv[])
 				}
 				else
 				{
-					int result = changeRequestReply(buffer,devices,contDevices);
+					int result = changeRequestReply(buffer,devices,contDevices,channel);
 					char sResult[4];
 					if(result < 0) sprintf(sResult,"ERR");
-					else if(result == 0) sprintf(sResult,"OK");
+					else if(result == 0)
+					{
+						sprintf(sResult,"OK");
+						kill(pidAuto,SIGKILL);	//Riavvio il gestore delle automazioni
+						pidAuto = genAutoService(channel,devices,contDevices);
+					}
 					else sprintf(sResult,"%d",result - 1);
 
 					printf("Rispondo a %s con messaggio %s\n\n",inet_ntoa(addrClient.sin_addr),sResult);
@@ -243,8 +244,24 @@ int main(int argc, char *argv[])
 
 		if(FD_ISSET(channel[0],&setRead))	//Gestore automazioni
 		{
-			char car;
-			if(read(channel[0],&car,sizeof(char)) > 0) write(STDOUT,&car,sizeof(char));
+			int readInt;
+			int flagErr = 0;
+
+			if(read(channel[0],&readInt,sizeof(int)) != sizeof(int))
+			{
+				perror("Errore aggiornamento stato");
+				flagErr = 1;
+			}
+
+			if(!flagErr)
+			{
+				if(posChange < 0) posChange = readInt;
+				else
+				{
+					devices[posChange]->status = readInt;
+					posChange = -1;
+				}
+			}
 		}
 	}
 
@@ -281,6 +298,23 @@ void exitWithStatus(int status, int pidChild)
 	if(pidChild >= 0) kill(pidChild,SIGKILL);
 	IO_close();
 	exit(status);
+}
+
+int genAutoService(int *channel, Device *devices[], int contDevices)
+{
+	int pidAuto; 
+
+	if(!(pidAuto = fork()))
+	{
+		signal(SIGINT,SIG_DFL);
+		close(channel[0]);
+		//Funzione gestore automazioni
+		serverAutomation(channel,devices,contDevices,automations,contAutomations,toShut,&contToShut);
+
+		exit(0);
+	}
+
+	return pidAuto;
 }
 
 //WhereAreYou
@@ -323,7 +357,7 @@ char *wayReply(int port)
 	return (flagErr)? NULL:response;
 }
 
-int changeRequestReply(char *buffer, Device *devices[], int contDevices)
+int changeRequestReply(char *buffer, Device *devices[], int contDevices, int *channel)
 {
 	//PROTOCOLLO: SET/GET; DISP/GRUP; nomeDispositivo/numeGruppo; statoDaSettare (SENZA SPAZI)
 	int result = 0;	//Caso GET: se !flagErr allora result == 1 => OFF; result == 2 => ON

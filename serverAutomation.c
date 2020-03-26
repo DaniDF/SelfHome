@@ -1,5 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include <sys/wait.h>
+#include <sys/select.h>
 #include <time.h>
 #include <signal.h>
 #include "configDevices.h"
@@ -8,8 +11,6 @@
 
 int serverAutomation(int *channel, Device **devices, int lenDevices, Automation **automations, int lenAutomations, int *toShut, int *contToShut)
 {
-    //printf("Server Automazioni\n");
-
     int contDelated = 0;
 
     for(int contAutomation = 0; contAutomation < lenAutomations; contAutomation++)
@@ -38,6 +39,7 @@ int serverAutomation(int *channel, Device **devices, int lenDevices, Automation 
 
     if(contDelated > 0)
     {
+        perror("Errore automazioni non valide");
         printf("Trovat%c %d automazion%c non valid%c!\n",(contDelated < 10)? 'a':'e',
                                                         contDelated,(contDelated < 10)? 'e':'i',
                                                         (contDelated < 10)? 'a':'e');
@@ -79,7 +81,7 @@ int serverAutomation(int *channel, Device **devices, int lenDevices, Automation 
                 if(strcmp(devices[contDevice]->name,automations[contAutomation]->name) == 0 && devices[contDevice]->status != automations[contAutomation]->value)
                 {
                     flagFind = 1;
-                    printf("Automazione dispositivo %s valore %d\n\n",devices[contDevice]->name,automations[contAutomation]->value);
+                    printf("Automazione dispositivo %s valore %d\n\n",devices[contDevice]->name,automations[contAutomation]->value,devices[contDevice]->status);
 
                     if((*contToShut)+1 > MAX_TO_SHUT) {usleep(MIN_PULSE_DURATION); kill(getpid(),SIGALRM); }
 
@@ -88,11 +90,15 @@ int serverAutomation(int *channel, Device **devices, int lenDevices, Automation 
 						IO_write(devices[contDevice]->pin,HIGH);
 						toShut[(*contToShut)++] = devices[contDevice]->pin;
                         devices[contDevice]->status = automations[contAutomation]->value;
+                        write(channel[1],&contDevice,sizeof(int));
+                        write(channel[1],&(devices[contDevice]->status),sizeof(int));
 					}
 					else
 					{
 						IO_write(devices[contDevice]->pin,automations[contAutomation]->value);
 						devices[contDevice]->status = automations[contAutomation]->value;
+                        write(channel[1],&contDevice,sizeof(int));
+                        write(channel[1],&(devices[contDevice]->status),sizeof(int));
 					}
                 }
             }
@@ -112,11 +118,15 @@ int serverAutomation(int *channel, Device **devices, int lenDevices, Automation 
                             IO_write(devices[contDevice]->pin,HIGH);
                             toShut[(*contToShut)++] = devices[contDevice]->pin;
                             devices[contDevice]->status = automations[contAutomation]->value;
+                            write(channel[1],&contDevice,sizeof(int));
+                            write(channel[1],&(devices[contDevice]->status),sizeof(int));
                         }
                         else
                         {
                             IO_write(devices[contDevice]->pin,automations[contAutomation]->value);
                             devices[contDevice]->status = automations[contAutomation]->value;
+                            write(channel[1],&contDevice,sizeof(int));
+                            write(channel[1],&(devices[contDevice]->status),sizeof(int));
                         }
                     }
                 }
