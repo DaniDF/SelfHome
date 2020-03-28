@@ -27,6 +27,8 @@ logFile="/var/log/selfhome"
 oldDir=$PWD
 cd $dir
 
+./logRotate.sh $logFile
+
 sleep 10
 
 date > $logFile
@@ -40,6 +42,7 @@ fi
 
 cd $oldDir' > $dir/starter.sh
 
+chmod u+x $dir/logRotate.sh
 chmod u+x $dir/starter.sh
 
 fileSys="/etc/init.d/selfhome"
