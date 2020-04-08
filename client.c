@@ -21,7 +21,7 @@
 
 int main(int argc, char *argv[])
 {
-	if(argc != 1 && argc != 3) perror("Errore numero argomenti"), exit(-1);
+	if(argc != 1 && argc != 2 && argc != 4) perror("Errore numero argomenti"), exit(-1);
 
 	struct hostent *host;
 	int port;
@@ -39,6 +39,17 @@ int main(int argc, char *argv[])
 	int sockUDP;
 	if((sockUDP = socket(AF_INET,SOCK_DGRAM,0)) < 0) perror("Errore creazione socket UDP"), exit(-2);
 	if(bind(sockUDP,(struct sockaddr*)&addrClient,sizeof(addrClient)) < 0) perror("Errore bind UDP"), exit(-3);
+
+	int flagList = ((argc == 2 || argc == 4) && strcmp(argv[1],"-l") == 0);
+
+	printf("flagList = %d\n",flagList);
+
+	for(int cont = 1; flagList && cont < argc-1; cont++)
+	{
+		argv[cont] = argv[cont+1];
+	}
+
+	argc--;
 
 	if(argc == 1)
 	{
@@ -110,19 +121,22 @@ int main(int argc, char *argv[])
 	memset((char*)&addrServer,0,sizeof(addrServer));
 	addrServer.sin_family = AF_INET;	//Campo ip compilato piu' avanti
 	addrServer.sin_addr.s_addr = ((struct in_addr*)(host->h_addr))->s_addr;
-	addrServer.sin_port = htons(port);	
+	addrServer.sin_port = htons(port);
 
-	int sockTCP;
-	if((sockTCP = socket(AF_INET,SOCK_STREAM,0)) < 0) perror("Errore socket TCP"), exit(-2);
-	if(connect(sockTCP,(struct sockaddr*)&addrServer,sizeof(addrServer)) < 0) perror("Errore connect"), exit(-3);
+	if(flagList)
+	{
+		int sockTCP;
+		if((sockTCP = socket(AF_INET,SOCK_STREAM,0)) < 0) perror("Errore socket TCP"), exit(-2);
+		if(connect(sockTCP,(struct sockaddr*)&addrServer,sizeof(addrServer)) < 0) perror("Errore connect"), exit(-3);
 
-	if(write(sockTCP,"GET",4*sizeof(char)) < 0) perror("Errore invio get"), exit(-4);
+		if(write(sockTCP,"GET",4*sizeof(char)) < 0) perror("Errore invio get"), exit(-4);
 
-	char car;
-	while(read(sockTCP,&car,sizeof(char)) > 0)
-		write(STDOUT,(car == '\0')? "\n":&car,sizeof(char));
+		char car;
+		while(read(sockTCP,&car,sizeof(char)) > 0)
+			write(STDOUT,(car == '\0')? "\n":&car,sizeof(char));
 
-	close(sockTCP);
+		close(sockTCP);
+	}
 
 	char line[255];
 	int contLine = 0;
