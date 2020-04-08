@@ -21,7 +21,7 @@
 
 int main(int argc, char *argv[])
 {
-	if(argc != 1 && argc != 2 && argc != 4) perror("Errore numero argomenti"), exit(-1);
+	if(argc > 4) perror("Errore numero argomenti"), exit(-1);
 
 	struct hostent *host;
 	int port;
@@ -42,14 +42,12 @@ int main(int argc, char *argv[])
 
 	int flagList = ((argc == 2 || argc == 4) && strcmp(argv[1],"-l") == 0);
 
-	printf("flagList = %d\n",flagList);
-
 	for(int cont = 1; flagList && cont < argc-1; cont++)
 	{
 		argv[cont] = argv[cont+1];
 	}
 
-	argc--;
+	if(flagList) argc--;
 
 	if(argc == 1)
 	{
@@ -140,7 +138,7 @@ int main(int argc, char *argv[])
 
 	char line[255];
 	int contLine = 0;
-	while(contLine < 255 && read(STDIN,&(line[contLine]),sizeof(char)) > 0)
+	while(!flagList && contLine < 255 && read(STDIN,&(line[contLine]),sizeof(char)) > 0)
 	{
 		if(line[contLine] == '\n')
 		{
