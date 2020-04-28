@@ -33,12 +33,15 @@ sleep 10
 
 date > $logFile
 
-if [ -c $usb -a -w $usb -a -r $usb ]
-then
-	$dir/./server 4000 $dir/devices $usb >> $logFile 2>&1 &
-else
-	$dir/./server 4000 $dir/devices >> $logFile 2>&1 &
-fi
+for usb in $(ls /dev/ttyACM?)
+do
+    if [ -c $usb -a -w $usb -a -r $usb ]
+    then
+        $dir/./server 4000 $dir/devices $usb >> $logFile 2>&1 &
+    else
+        $dir/./server 4000 $dir/devices >> $logFile 2>&1 &
+    fi
+done
 
 cd $oldDir' > $dir/starter.sh
 
