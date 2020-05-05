@@ -139,7 +139,9 @@ int serverAutomation(int *channel, Device **devices, int lenDevices, Automation 
         if(contAutomation == lenAutomations)
         {
             contAutomation = 0;
+            IO_sleep();
             sleep(1);
+            IO_wakeUp();
         }
     }
 

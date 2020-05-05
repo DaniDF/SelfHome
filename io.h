@@ -57,5 +57,11 @@ int IO_write(int pin, int value);
 //Lettura
 int IO_read(int pin, int *value);
 
+//Sospensione risorse
+int IO_sleep(void);
+
+//Riacquisizione risorse
+int IO_wakeUp(void);
+
 //Chiusura
 int IO_close(void);

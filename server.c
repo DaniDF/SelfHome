@@ -141,6 +141,8 @@ int main(int argc, char *argv[])
 
 	int posChange = -1;
 
+	IO_sleep();
+
 	while(1)
 	{		
 		FD_ZERO(&setRead);
@@ -148,7 +150,11 @@ int main(int argc, char *argv[])
 		FD_SET(sockTCP,&setRead);
 		FD_SET(channel[0],&setRead);
 
-		if(select(MAX_3(sockUDP,sockTCP,channel[0])+1,&setRead,NULL,NULL,NULL) < 0)
+		struct timeval waitTime;
+		waitTime.tv_sec = 30;
+		waitTime.tv_usec = 0;
+
+		if(select(MAX_3(sockUDP,sockTCP,channel[0])+1,&setRead,NULL,NULL,&waitTime) < 0)
 		{
 			if(errno == EINTR) continue;
 			else perror("Errore select"), exitWithStatus(-7,pidAuto);
@@ -156,6 +162,11 @@ int main(int argc, char *argv[])
 
 		char buffer[255];
 		int dim = 0;
+
+		if(waitTime.tv_sec > 0 || waitTime.tv_usec > 0)
+		{
+			IO_wakeUp();
+		}
 
 		if(FD_ISSET(sockUDP,&setRead))//UDP
 		{
@@ -263,6 +274,8 @@ int main(int argc, char *argv[])
 				}
 			}
 		}
+
+		IO_sleep();
 	}
 
 	perror("Errore server generico");
@@ -285,6 +298,8 @@ void softStop(int numSig)
 
 void shut(int numSig)
 {
+	IO_wakeUp();
+
 	for(int cont = 0; cont < contToShut; cont++)
 	{
 		IO_write(toShut[cont],LOW);
@@ -296,6 +311,7 @@ void shut(int numSig)
 void exitWithStatus(int status, int pidChild)
 {
 	if(pidChild >= 0) kill(pidChild,SIGKILL);
+	IO_wakeUp();
 	IO_close();
 	exit(status);
 }

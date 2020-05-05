@@ -270,18 +270,16 @@ http://man7.org/linux/man-pages/man3/termios.3.html
 
 int RS232_PollComport(int comport_number, unsigned char *buf, int size)
 {
-  int n;
-
+  int n = 0;
   n = read(Cport[comport_number], buf, size);
 
   if(n < 0)
   {
-    if(errno == EAGAIN)  return 0;
+    if(errno == EAGAIN) return 0;
   }
 
   return(n);
 }
-
 
 int RS232_SendByte(int comport_number, unsigned char byte)
 {

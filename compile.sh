@@ -28,13 +28,12 @@ oldDir=$PWD
 cd $dir
 
 ./logRotate.sh $logFile
-
-sleep 10
-
 date > $logFile
 
 for usb in $(ls /dev/ttyACM?)
 do
+    sleep 10
+
     if [ -c $usb -a -w $usb -a -r $usb ]
     then
         $dir/./server 4000 $dir/devices $usb >> $logFile 2>&1 &
