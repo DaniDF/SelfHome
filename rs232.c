@@ -337,9 +337,8 @@ void RS232_CloseComport(int comport_number)
   }
 
   tcsetattr(Cport[comport_number], TCSANOW, old_port_settings + comport_number);
-  close(Cport[comport_number]);
-
   flock(Cport[comport_number], LOCK_UN);  /* free the port so that others can use it. */
+  close(Cport[comport_number]);
 }
 
 /*

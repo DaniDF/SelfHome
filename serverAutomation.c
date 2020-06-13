@@ -1,53 +1,46 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <fcntl.h>
+#include <netdb.h>
 #include <sys/wait.h>
 #include <sys/select.h>
 #include <time.h>
 #include <signal.h>
 #include "configDevices.h"
 #include "configAutomation.h"
-#include "io.h"
 
-int serverAutomation(int *channel, Device **devices, int lenDevices, Automation **automations, int lenAutomations, int *toShut, int *contToShut)
+int serverAutomation(int port, char* dirAutomationsName)
 {
-    int contDelated = 0;
+    Automation *automations[50];
+    int lenAutomations;
+    if((lenAutomations = loadAutomations(dirAutomationsName,automations,50)) < 0) perror("Errore impossibile caricare le automazioni"), exit(-1);
 
-    for(int contAutomation = 0; contAutomation < lenAutomations; contAutomation++)
-    {
-        int flagFind = 0;
-        for(int contDevice = 0; !flagFind && contDevice < lenDevices; contDevice++)
-        {
-            if(strcmp(automations[contAutomation]->type,"DISP") == 0)
-            {
-                if(strcmp(devices[contDevice]->name,automations[contAutomation]->name) == 0) flagFind = 1;
-            }
-            else if(strcmp(automations[contAutomation]->type,"GRUP") == 0)
-            {
-                for(int contGroup = 0; !flagFind && contGroup < devices[contDevice]->contGroup; contGroup++)
-                {
-                    if(strcmp(devices[contDevice]->groups[contGroup],automations[contAutomation]->name) == 0) flagFind = 1;
-                }
-            }
-        }
+    struct sockaddr_in addrClient;
+    memset((char*)&addrClient,0,sizeof(addrClient));
+    addrClient.sin_family = AF_INET;
+    addrClient.sin_addr.s_addr = INADDR_ANY;
+    addrClient.sin_port = 0;
 
-        if(flagFind) automations[contAutomation-contDelated] = automations[contAutomation];
-        else contDelated++;
-    }
+    struct sockaddr_in addrServer;
+    memset((char*)&addrServer,0,sizeof(addrServer));
+    addrServer.sin_family = AF_INET;
+    struct hostent *host = gethostbyname("localhost");
+	if(host == NULL) perror("Errore impossibile contattare il server"), exit(-1);
+    addrServer.sin_addr.s_addr = ((struct in_addr*)(host->h_addr))->s_addr;
+    addrServer.sin_port = htons(port);
 
-    lenAutomations -= contDelated;
+    struct sockaddr_in temp;
+	memset((char*)&temp,0,sizeof(temp));
+	int lenTemp = sizeof(temp);
 
-    if(contDelated > 0)
-    {
-        perror("Errore automazioni non valide");
-        printf("Trovat%c %d automazion%c non valid%c!\n",(contDelated < 10)? 'a':'e',
-                                                        contDelated,(contDelated < 10)? 'e':'i',
-                                                        (contDelated < 10)? 'a':'e');
-    }
+    int sockUDP;
+	if((sockUDP = socket(AF_INET,SOCK_DGRAM,0)) < 0) perror("Errore creazione socket UDP"), exit(-2);
+	if(bind(sockUDP,(struct sockaddr*)&addrClient,sizeof(addrClient)) < 0) perror("Errore bind UDP"), exit(-3);
 
     int contAutomation = 0;
 
-    while(1)
+    while(lenAutomations > 0)
     {
         time_t rowtime;
         time(&rowtime);
@@ -73,77 +66,26 @@ int serverAutomation(int *channel, Device **devices, int lenDevices, Automation 
 
         int validity = (afterStart == 1) && (beforeStop == 1);
 
-        int flagFind = 0;
-        for(int contDevice = 0; validity && !flagFind && contDevice < lenDevices; contDevice++)
+        if(validity)
         {
-            if(strcmp(automations[contAutomation]->type,"DISP") == 0)
+            char cmd[MAX_NAME_LENGTH + 13];
+            sprintf(cmd,"SET;%s;%s;%d",automations[contAutomation]->type,automations[contAutomation]->name,automations[contAutomation]->value);
+
+            if(sendto(sockUDP,cmd,(strlen(cmd)+1)*sizeof(char),0,(struct sockaddr*)&addrServer,sizeof(addrServer)) >= 0)
             {
-                if(strcmp(devices[contDevice]->name,automations[contAutomation]->name) == 0 && devices[contDevice]->status != automations[contAutomation]->value)
-                {
-                    flagFind = 1;
-                    printf("Automazione dispositivo %s valore %d\n\n",devices[contDevice]->name,automations[contAutomation]->value,devices[contDevice]->status);
-
-                    if((*contToShut)+1 > MAX_TO_SHUT) {usleep(MIN_PULSE_DURATION); kill(getpid(),SIGALRM); }
-
-                    if(devices[contDevice]->pulse)
-					{
-						IO_write(devices[contDevice]->pin,HIGH);
-						toShut[(*contToShut)++] = devices[contDevice]->pin;
-                        devices[contDevice]->status = automations[contAutomation]->value;
-                        write(channel[1],&contDevice,sizeof(int));
-                        write(channel[1],&(devices[contDevice]->status),sizeof(int));
-					}
-					else
-					{
-						IO_write(devices[contDevice]->pin,automations[contAutomation]->value);
-						devices[contDevice]->status = automations[contAutomation]->value;
-                        write(channel[1],&contDevice,sizeof(int));
-                        write(channel[1],&(devices[contDevice]->status),sizeof(int));
-					}
-                }
+                if(recvfrom(sockUDP,cmd,5*sizeof(char),0,(struct sockaddr*)&temp,&lenTemp) < 0) perror("Errore ricezione comando");
             }
-            else if(strcmp(automations[contAutomation]->type,"GRUP") == 0)
-            {
-                for(int contGroup = 0; !flagFind && contGroup < devices[contDevice]->contGroup; contGroup++)
-                {
-                    if(strcmp(devices[contDevice]->groups[contGroup],automations[contAutomation]->name) == 0 && devices[contDevice]->status != automations[contAutomation]->value)
-                    {
-                        flagFind = 1;
-                        printf("Automazione dispositivo %s valore %d\n\n",devices[contDevice]->name,automations[contAutomation]->value);
-                        
-                        if((*contToShut)+1 > MAX_TO_SHUT) {usleep(MIN_PULSE_DURATION); kill(getpid(),SIGALRM); }
-
-                        if(devices[contDevice]->pulse)
-                        {
-                            IO_write(devices[contDevice]->pin,HIGH);
-                            toShut[(*contToShut)++] = devices[contDevice]->pin;
-                            devices[contDevice]->status = automations[contAutomation]->value;
-                            write(channel[1],&contDevice,sizeof(int));
-                            write(channel[1],&(devices[contDevice]->status),sizeof(int));
-                        }
-                        else
-                        {
-                            IO_write(devices[contDevice]->pin,automations[contAutomation]->value);
-                            devices[contDevice]->status = automations[contAutomation]->value;
-                            write(channel[1],&contDevice,sizeof(int));
-                            write(channel[1],&(devices[contDevice]->status),sizeof(int));
-                        }
-                    }
-                }
-            }
-
-            if(flagFind) alarm(1);
+            else perror("Errore invio automazione");
         }
-
-        contAutomation++;
-        if(contAutomation == lenAutomations)
-        {
-            contAutomation = 0;
-            IO_sleep();
-            sleep(1);
-            IO_wakeUp();
-        }
+        
+        if(++contAutomation >= lenAutomations) contAutomation = 0, sleep(1);
     }
+
+    perror("Terminazione gestore automazioni");
+
+    close(sockUDP);
+
+    pause();
 
     exit(0);
 }

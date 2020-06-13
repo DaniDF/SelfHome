@@ -97,7 +97,6 @@ int IO_sleep(void)
     if(IO_dev >= 0)
     {
         RS232_CloseComport(IO_dev);  //File
-        close(IO_dev);
     }
 
     IO_dev = IO_NOT_ASSIGNED;
