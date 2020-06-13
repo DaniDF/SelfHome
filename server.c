@@ -211,7 +211,7 @@ int main(int argc, char *argv[])
 						for(int contD = 0; !flagErr && contD < contDevices; contD++)
 						{
 							char disp[MAX_NAME_LENGTH+7];
-							sprintf(disp,"DISP;%s\n",devices[contD]->name);
+							sprintf(disp,"DISP;%s;%d\n",devices[contD]->name,devices[contD]->changeable);
 							flagErr = flagErr || (write(conn,disp,(strlen(disp))*sizeof(char)) < 0);
 
 							for(int contG = 0; !flagErr && contG < devices[contD]->contGroup; contG++)
