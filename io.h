@@ -55,7 +55,7 @@ int IO_init_usb(char *devName);
 int IO_write(int pin, int value);
 
 //Lettura
-int IO_read(int pin, int *value);
+int IO_read(int pin, short int *value);
 
 //Sospensione risorse
 int IO_sleep(void);

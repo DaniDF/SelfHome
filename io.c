@@ -78,17 +78,42 @@ int IO_write(int pin, int value)
         //if(flagErr) perror("IO: WRITE: Errore ricezione");
         flagErr = flagErr || buffer[0] == IO_ERR_RESPONSE || buffer[0] != IO_OK_RESPONSE;
 
-        //if(flagErr && buffer[0] == IO_ERR_RESPONSE) perror("IO: WRITE: Errore ricevuto messaggio errore");
-        //else if(flagErr && buffer[0] != IO_OK_RESPONSE) perror("IO: WRITE: Errore ricevuto non OK");
+        /*if(flagErr && buffer[0] == IO_ERR_RESPONSE) perror("IO: WRITE: Errore ricevuto messaggio errore");
+        else if(flagErr && buffer[0] != IO_OK_RESPONSE) perror("IO: WRITE: Errore ricevuto non OK");*/
     }
 
     return -1 * flagErr;
 }
 
 //Lettura
-int IO_read(int pin, int *value)
+int IO_read(int pin, short int *value)
 {
-    return -1;
+    int flagErr = (pin > max);
+
+    if(!flagErr && IO_dev == IO_BCM2835_SEL)    //GPIO
+    {
+        #if !DEBUG
+        bcm2835_gpio_fsel(pin,BCM2835_GPIO_FSEL_OUTP);
+		*value = bcm2835_gpio_lev(pin);
+        #endif
+    }
+    else if(!flagErr && IO_dev > 0) //usb
+    {
+        char buffer[8];
+        sprintf(buffer,"GET;%d\n",pin);
+        flagErr = (RS232_SendBuf(IO_dev,buffer,8*sizeof(char)) < 0);
+        if(flagErr) /*perror("IO: READ: Errore invio")*/;
+        else usleep(10000);
+
+        flagErr = (RS232_PollComport(IO_dev,buffer,sizeof(char)) != 1);
+        //if(flagErr) perror("IO: READ: Errore ricezione");
+        flagErr = flagErr || (buffer[0] != 0 && buffer[0] != 1);
+        if(!flagErr) *value = buffer[0];
+
+        //if(flagErr && (buffer[0] != 0 && buffer[0] != 1)) perror("IO: READ: Errore ricevuto messaggio non valido");
+    }
+
+    return -1 * flagErr;
 }
 
 //Sospensione risorse

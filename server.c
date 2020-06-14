@@ -136,11 +136,7 @@ int main(int argc, char *argv[])
 		FD_SET(sockUDP,&setRead);
 		FD_SET(sockTCP,&setRead);
 
-		struct timeval waitTime;
-		waitTime.tv_sec = 30;
-		waitTime.tv_usec = 0;
-
-		if(select(MAX(sockUDP,sockTCP)+1,&setRead,NULL,NULL,&waitTime) < 0)
+		if(select(MAX(sockUDP,sockTCP)+1,&setRead,NULL,NULL,NULL) < 0)
 		{
 			if(errno == EINTR) continue;
 			else perror("Errore select"), exitWithStatus(-7,pidAuto);
@@ -149,10 +145,7 @@ int main(int argc, char *argv[])
 		char buffer[255];
 		int dim = 0;
 
-		if(waitTime.tv_sec > 0 || waitTime.tv_usec > 0)
-		{
-			IO_wakeUp();
-		}
+		IO_wakeUp();
 
 		if(FD_ISSET(sockUDP,&setRead))//UDP
 		{
@@ -371,6 +364,7 @@ int changeRequestReply(char *buffer, Device *devices[], int contDevices)
 				if(strcmp(name,devices[cont]->name) == 0)
 				{
 					flagErr = flagErr || devices[cont]->pulse;
+					flagErr = flagErr || IO_read(devices[cont]->pin,&(devices[cont]->status)) < 0;
 					if(!flagErr) result = devices[cont]->status + 1;	//devices[cont]->status (range 0 oppure 1) result (range 1 oppure 2) per questo il '+1'
 					flagFind = 1;
 				}
