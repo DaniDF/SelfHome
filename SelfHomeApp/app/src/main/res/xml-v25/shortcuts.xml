@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="setting"
+        android:enabled="true"
+        android:icon="@drawable/settings_yellow"
+        android:shortcutShortLabel="@string/app_shortcutShortLabelSettings"
+        android:shortcutLongLabel="@string/app_shortcutLongLabelSettings"
+        android:shortcutDisabledMessage="@string/app_shortcutDisabledMessageSetting" >
+
+        <intent
+            android:action="android.intent.action.CALL_BUTTON"
+            android:targetPackage="it.dani.selfhomeapp"
+            android:targetClass="it.dani.selfhomeapp.middle.view.settings.ScreenSettingsActivity" />
+
+        <categories android:name="android.shortcut.conversation" />
+
+    </shortcut>
+
+    <shortcut
+        android:shortcutId="flashLight"
+        android:enabled="true"
+        android:icon="@drawable/settings_yellow"
+        android:shortcutShortLabel="@string/app_shortcutShortLabelFlashLight"
+        android:shortcutLongLabel="@string/app_shortcutLongLabelFlashLight"
+        android:shortcutDisabledMessage="@string/app_shortcutDisabledMessageFlashLight" >
+
+        <intent
+            android:action="android.intent.action.SHOW_APP_INFO"
+            android:targetPackage="it.dani.selfhomeapp"
+            android:targetClass="it.dani.selfhomeapp.middle.view.SensorsActivity" />
+
+        <categories android:name="android.shortcut.conversation" />
+
+    </shortcut>
+
+    <shortcut
+        android:shortcutId="security"
+        android:enabled="true"
+        android:icon="@drawable/admin_panel_settings"
+        android:shortcutShortLabel="@string/app_shortcutShortLabelSecurity"
+        android:shortcutLongLabel="@string/app_shortcutLongLabelSecurity"
+        android:shortcutDisabledMessage="@string/app_shortcutDisabledMessageSecurity" >
+
+        <intent
+            android:action="android.intent.action.SHOW_APP_INFO"
+            android:targetPackage="it.dani.selfhomeapp"
+            android:targetClass="it.dani.selfhomeapp.middle.view.settings.SecuritySettingsActivity" />
+
+        <categories android:name="android.shortcut.conversation" />
+
+    </shortcut>
+
+</shortcuts>

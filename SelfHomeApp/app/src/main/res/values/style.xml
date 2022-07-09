@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="deviceButton" parent="android:Widget.Material.Button">
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+        <item name="android:background">@drawable/rounded_corner</item>
+    </style>
+    
+    <style name="SplashScreenTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_screen_background</item>
+    </style>
+
+    <!--
+    <style name="Widget.App.Snackbar" parent="Widget.MaterialComponents.Snackbar">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.Snackbar</item>
+        <item name="actionTextColorAlpha">1</item>
+    </style>
+
+    <style name="Widget.App.SnackbarButton" parent="Widget.MaterialComponents.Button.TextButton.Snackbar">
+        <item name="android:textColor">@color/my_yellow</item>
+    </style>
+
+    <style name="ThemeOverlay.App.Snackbar" parent="">
+        <item name="android:backgroundTint">@color/my_blue_light</item>
+    </style>
+
+    <style name="Widget.App.Snackbar.TextView" parent="Widget.MaterialComponents.Snackbar.TextView">
+        <item name="android:backgroundTint">@color/my_blue_light</item>
+    </style>
+    -->
+
+    <style name="ThemeOverlay.App.ActionBar" parent="ThemeOverlay.MaterialComponents.Toolbar.Primary">
+        <item name="android:textColorPrimary">?attr/appTitleColor</item>
+        <item name="android:textColorSecondary">?attr/colorSecondaryVariant</item>
+        <item name="android:backgroundTint">@color/my_blue_dark</item>
+    </style>
+
+    <style name="ThemeOverlay.App.ActionBar.Popup" parent="ThemeOverlay.AppCompat.DayNight.ActionBar">
+        <item name="android:textColorPrimary">@color/my_white</item>
+        <item name="android:textColorSecondary">?attr/colorSecondaryVariant</item>
+        <item name="android:backgroundTint">@color/my_blue_dark</item>
+    </style>
+</resources>

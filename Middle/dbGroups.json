@@ -1,0 +1,1 @@
+{"groups":[{"name":"GP2","devices":[{"name":"prova 2 SI","state":{"state":0}},{"name":"prova 1 SI","state":{"state":0}}]},{"name":"palestra","devices":[{"name":"luce fredda 1","state":{"state":0}},{"name":"luce calda 1","state":{"state":0}}]},{"name":"riscaldamento","devices":[{"name":"scaldino","state":{"state":0}}]}]}

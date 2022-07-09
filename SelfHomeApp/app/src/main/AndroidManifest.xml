@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="it.dani.selfhomeapp">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.SelfHomeApp">
+
+        <activity android:name=".middle.view.SlashScreenActivity" android:theme="@style/SplashScreenTheme"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <meta-data android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
+
+        </activity>
+
+        <activity android:name=".middle.view.MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.CALL_BUTTON" />
+
+                <category android:name="android.intent.category.HOME" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".middle.view.GroupActivity"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.CALL_BUTTON" />
+
+                <category android:name="android.intent.category.TAB" />
+            </intent-filter>
+
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".middle.view.MainActivity" />
+        </activity>
+
+        <activity android:name=".middle.view.NewGroupActivity"
+            android:windowSoftInputMode="adjustNothing"
+            android:exported="false">
+
+            <intent-filter>
+                <action android:name="android.intent.action.INSERT_OR_EDIT" />
+
+                <category android:name="android.intent.category.TAB" />
+            </intent-filter>
+
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".middle.view.GroupActivity" />
+        </activity>
+
+        <activity android:name=".middle.view.settings.SecuritySettingsActivity"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.CALL_BUTTON" />
+
+                <category android:name="android.intent.category.TAB" />
+            </intent-filter>
+
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".middle.view.MainActivity" />
+        </activity>
+
+        <activity android:name=".middle.view.settings.LanguageSettingsActivity"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.CALL_BUTTON" />
+
+                <category android:name="android.intent.category.TAB" />
+            </intent-filter>
+
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".middle.view.MainActivity" />
+        </activity>
+
+        <activity android:name=".middle.view.settings.ScreenSettingsActivity"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.CALL_BUTTON" />
+
+                <category android:name="android.intent.category.TAB" />
+            </intent-filter>
+
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".middle.view.MainActivity" />
+        </activity>
+
+        <activity android:name=".middle.view.ChangeColorActivity"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.CHOOSER" />
+
+                <category android:name="android.intent.category.TAB" />
+            </intent-filter>
+
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".middle.view.MainActivity" />
+        </activity>
+
+        <activity android:name=".middle.view.settings.TerminalSettingsActivity"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.CALL_BUTTON" />
+
+                <category android:name="android.intent.category.TAB" />
+            </intent-filter>
+
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".middle.view.MainActivity" />
+        </activity>
+
+
+        <service android:name=".middle.service.SelfhomeCheckService"
+            android:directBootAware="true"
+            android:exported="true"
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:enabled="true"
+            android:process=":remote"/>
+
+        <receiver
+            android:name=".middle.service.Receiver"
+            android:exported="true"
+            android:enabled="true"
+            android:process=":remote" >
+
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.REBOOT" />
+                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="android.intent.action.SCREEN_ON" />
+                <action android:name="android.intent.action.DATE_CHANGED" />
+                <action android:name="android.intent.action.TIME_TICK" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+</manifest>

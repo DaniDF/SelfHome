@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!--
+    <item
+        android:id="@+id/reload_button"
+        android:icon="@drawable/refresh"
+        app:showAsAction="ifRoom"
+        android:title="@string/refresh" />
+    -->
+
+    <item
+        android:id="@+id/settings"
+        android:icon="@drawable/settings_24px"
+        app:showAsAction="ifRoom"
+        android:title="@string/settingsNameMenu">
+
+        <menu>
+            <item
+                android:id="@+id/admin_menu"
+                android:icon="@drawable/admin_panel_settings"
+                android:title="@string/adminSettingsNameMenu"
+                app:showAsAction="ifRoom" />
+
+            <item
+                android:id="@+id/language_settings_menu"
+                android:icon="@drawable/language"
+                android:title="@string/languageSettingsNameMenu"
+                app:showAsAction="ifRoom" />
+
+            <item
+                android:id="@+id/screen_settings_menu"
+                android:icon="@drawable/mobile_screen"
+                android:title="@string/screenSettingsNameMenu"
+                app:showAsAction="ifRoom" />
+
+            <item
+                android:id="@+id/terminal_settings_menu"
+                android:icon="@drawable/ic_terminal_black_24dp"
+                android:title="@string/terminalSettingsNameMenu"
+                app:showAsAction="ifRoom" />
+        </menu>
+    </item>
+</menu>

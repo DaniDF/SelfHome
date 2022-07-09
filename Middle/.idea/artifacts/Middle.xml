@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact name="Middle">
+    <output-path>$PROJECT_DIR$/out/artifacts/Middle</output-path>
+    <root id="root">
+      <element id="archive" name="Middle.jar">
+        <element id="module-output" name="Middle" />
+      </element>
+      <element id="file-copy" path="$MAVEN_REPOSITORY$/org/jetbrains/annotations/19.0.0/annotations-19.0.0.jar" />
+      <element id="library" level="project" name="gson-2.8.6" />
+      <element id="library" level="project" name="antlr-4.9.3-complete" />
+    </root>
+  </artifact>
+</component>

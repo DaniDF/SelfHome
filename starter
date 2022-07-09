@@ -1,0 +1,15 @@
+#!/bin/bash
+
+pwd=$PWD
+cd /home/dani/SelfHome/
+
+sleep 10
+Core/./server 4001 Core/devices /dev/ttyACM0 > /home/dani/SelfHome/Core/log  &
+cd Middle
+sleep 10
+(su dani ; /usr/bin/java -jar Middle.jar 4000 4001 > /home/dani/SelfHome/Middle/log &)
+
+cd ../SelfHomeBot
+nodejs TelegramBot.js
+
+cd $pwd
