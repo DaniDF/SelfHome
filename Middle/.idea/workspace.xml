@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="79374499-4577-4c94-8599-c1dfe93f5e25" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/KotlinJavaRuntime.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/model/SmartAction.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/model/SmartDevice.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/model/SmartDriver.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/model/SmartState.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/kotlin/model/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Client.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Middle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/annotations_19_0_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/antlr_4_9_3_complete.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/gson_2_8_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Middle.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Middle.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dbGroups.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/grammar/DFLite.g4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/grammar/DFPreprocessor.g4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/annotations-19.0.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/antlr-4.9.3-complete.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/gson-2.8.6.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Client/Client.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Middle/Middle.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Middle/Middle_bk.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Middle/annotations-19.0.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Middle/antlr-4.9.3-complete.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Middle/gson-2.8.6.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/provacifratura/Asymmetric.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/provacifratura/Symmetric.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/automation/controller/Controller.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/automation/executor/Executor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/automation/icontroller/IController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/automation/ipersistence/IPersistence.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/automation/model/Automation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/automation/model/AutomationValidity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/automation/persistence/Persistence.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/automation/persistence/SetAutomation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/controller/Controller.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/core/Core.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/core/persistence/CorePersistence.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/icontroller/IController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/icontroller/IControllerInterface.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/ipersistence/IDevicePersistence.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/ipersistence/IDeviceStatePersistence.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/ipersistence/IGroupPersistence.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/SocketListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/SocketListenerBackup.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLite.interp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLite.tokens" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteBaseVisitor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteLexer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteLexer.interp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteLexer.tokens" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$BlockContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$BlockStatementContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$CommandAddDeviceToGroupContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$CommandContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$CommandDelDeviceFromGroupContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$CommandDelGroupContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$CommandGetContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$CommandListContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$CommandListDeviceInGroupContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$CommandListGroupContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$CommandNewGroupContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$CommandSetContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$CommandSleepContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$CommandToggleContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$ComparatorContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$ComparatorEEContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$ComparatorGEContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$ComparatorGTContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$ComparatorLEContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$ComparatorLTContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$ComparatorSumContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$ComparatorTimeContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$FilterCompContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$FilterContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$IfStatementContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$IfStatementIfContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$ItemCommandContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$ItemContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$ItemNumberContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$LineComContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$LineCommandContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$ListCommandContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$LogicAndContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$LogicComparatorContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$LogicLoginAndContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$LogicOperatorAndContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$LogicOperatorOrContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$LogicOrContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$MulDivContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$MulDivDivContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$MulDivMulContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$MulDivTermContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$ProgramContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$ProgramStatementContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$SeparatorContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$StatementContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$StatementIfContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$StatementLineCommandContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$StatementRepeatContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$SumAddContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$SumContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$SumMinuContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$SumMulDivContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$TermBraContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$TermContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$TermItemContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser$TermNotTermContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteParser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/listener/parser/DFLiteVisitor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/model/Device.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/model/DeviceState.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/model/Group.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/persistence/FilePersistence.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/persistence/SetGroup.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/test/client/Client.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/test/controller/Controller.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/test/controller/ControllerEmulator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/test/core/Persistence.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/test/parser/ParserTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Middle/it/dani/selfhome/way/WhereAreYouListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/private.key" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public.key" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/dani/selfhome/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/dani/selfhome/automation/controller/Controller.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/dani/selfhome/automation/executor/Executor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/dani/selfhome/automation/icontroller/IController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/dani/selfhome/automation/ipersistence/IPersistence.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/dani/selfhome/automation/model/Automation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/dani/selfhome/automation/model/AutomationValidity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/dani/selfhome/automation/persistence/Persistence.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/dani/selfhome/automation/persistence/SetAutomation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/dani/selfhome/controller/Controller.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/dani/selfhome/core/Core.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/dani/selfhome/core/persistence/CorePersistence.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/dani/selfhome/icontroller/IController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/dani/selfhome/icontroller/IControllerInterface.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/dani/selfhome/ipersistence/IDevicePersistence.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/dani/selfhome/ipersistence/IDeviceStatePersistence.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/dani/selfhome/ipersistence/IGroupPersistence.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/dani/selfhome/listener/SocketListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/dani/selfhome/listener/SocketListenerBackup.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/dani/selfhome/listener/cryptography/Asymmetric.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/dani/selfhome/listener/cryptography/Symmetric.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/dani/selfhome/listener/parser/DFLite.interp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/dani/selfhome/listener/parser/DFLite.tokens" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/dani/selfhome/listener/parser/DFLiteBaseVisitor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/dani/selfhome/listener/parser/DFLiteLexer.interp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/dani/selfhome/listener/parser/DFLiteLexer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/dani/selfhome/listener/parser/DFLiteLexer.tokens" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/dani/selfhome/listener/parser/DFLiteParser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/dani/selfhome/listener/parser/DFLiteVisitor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/dani/selfhome/model/Device.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/dani/selfhome/model/DeviceState.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/dani/selfhome/model/Group.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/dani/selfhome/persistence/FilePersistence.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/dani/selfhome/persistence/SetGroup.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/dani/selfhome/way/WhereAreYouListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/it/dani/selfhome/test/client/Client.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/it/dani/selfhome/test/client/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/it/dani/selfhome/test/controller/Controller.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/it/dani/selfhome/test/controller/ControllerEmulator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/it/dani/selfhome/test/core/Persistence.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/it/dani/selfhome/test/parser/ParserTest.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Kotlin Data Class" />
+        <option value="Kotlin Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GoLibraries">
+    <option name="indexEntireGoPath" value="true" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2CwNC7K5m77karQx2ZOAGzaPgtM" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.format.on.save.advertiser.fired": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "go.import.settings.migrated": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="79374499-4577-4c94-8599-c1dfe93f5e25" name="Changes" comment="" />
+      <created>1659709564784</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1659709564784</updated>
+      <workItem from="1659709567222" duration="4263000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VgoProject">
+    <integration-enabled>false</integration-enabled>
+    <settings-migrated>true</settings-migrated>
+  </component>
+</project>
