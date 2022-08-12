@@ -1,7 +1,8 @@
 package model
 
-abstract class SmartDriver {
-    abstract fun retrieveState() : SmartState
-
-    abstract fun setState() : SmartState
+interface SmartDriver {
+    /**
+     * @throws DriverParameterException
+     */
+    fun execute(device : SmartDevice, args : List<Any>) : Any
 }

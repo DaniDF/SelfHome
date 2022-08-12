@@ -1,41 +1,50 @@
 package model
 
+import java.io.Serializable
 import java.time.LocalDateTime
 
-abstract class SmartAction(
-    open val id : Int,
-    open val commonName : String,
-    open val allowedStates : List<SmartState> = emptyList(),
-    open val driver : SmartDriver
+abstract class SmartAction<T>(
+    val id : Int,
+    protected val device: SmartDevice,
+    val commonName : String,
+    protected open val driver : SmartDriver,
+    val allowedStates : List<SmartState<T>> = emptyList()
 ) {
-    fun getComputedSmartAction(futureState : SmartState) : ComputedStartState {
+    open fun execute(state: SmartState<*>) : Any? {
+        return this.driver.execute(this.device, listOf(state))
+    }
+
+    fun getComputedSmartAction(futureState : SmartState<*>) : ComputedStartState {
         TODO("Not yet implemented")
     }
 }
 
-abstract class ContinuousSmartAction (
+open class ContinuousSmartAction <T> (
     id : Int,
+    device : SmartDevice,
     commonName : String,
-    allowedStates : List<SmartState> = emptyList(),
-    driver : SmartDriver
-) : SmartAction(id, commonName, allowedStates, driver)
+    driver : SmartDriver,
+    allowedStates : List<SmartState<T>> = emptyList()
+) : SmartAction<T>(id, device, commonName, driver, allowedStates)
 
-abstract class DiscreteSmartAction(
+open class DiscreteSmartAction <T>(
     id : Int,
+    device : SmartDevice,
     commonName : String,
-    allowedStates : List<SmartState> = emptyList(),
-    driver : SmartDriver
-) : SmartAction(id, commonName, allowedStates, driver)
+    driver : SmartDriver,
+    allowedStates : List<SmartState<T>> = emptyList()
+) : SmartAction<T>(id, device, commonName, driver, allowedStates)
 
-abstract class PulseSmartAction(
+open class PulseSmartAction <T>(
     id : Int,
+    device : SmartDevice,
     commonName : String,
-    allowedStates : List<SmartState> = emptyList(),
-    driver : SmartDriver
-) : DiscreteSmartAction(id, commonName, allowedStates, driver)
+    driver : SmartDriver,
+    allowedStates : List<SmartState<T>> = emptyList()
+) : DiscreteSmartAction<T>(id, device, commonName, driver, allowedStates)
 
 data class ComputedStartState (
     val timestamp : LocalDateTime,
     val futureStateIndex : Int,
     val smartActionId : Int
-)
+) : Serializable

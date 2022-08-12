@@ -1,27 +1,30 @@
 package model
 
 abstract class SmartDevice(
-    open val id : Int,
-    open var commonName : String,
-    open val alternativeNames : Set<String> = emptySet(),
-    open val actions : Set<SmartAction> = emptySet(),
-    open var readOnly : Boolean
+    val id : Int,
+    var commonName : String,
+    var readOnly : Boolean,
+    var connection: SmartDeviceConnection,
+    val alternativeNames : Set<String> = emptySet(),
+    var actions : Set<SmartAction<*>> = emptySet()
 )
 
-class StatefulSmartDevice(
-    override val id : Int,
-    override var commonName : String,
-    override val alternativeNames : Set<String> = emptySet(),
-    override val actions : Set<SmartAction> = emptySet(),
-    override var readOnly : Boolean,
-    var state : SmartState
-) : SmartDevice(id,commonName,alternativeNames, actions, readOnly)
+class StatefulSmartDevice <A,out T : SmartState<A>>(
+    id : Int,
+    commonName : String,
+    readOnly : Boolean,
+    connection: SmartDeviceConnection,
+    var state : @UnsafeVariance T,
+    alternativeNames : Set<String> = emptySet(),
+    actions : Set<SmartAction<A>> = emptySet()
+) : SmartDevice(id,commonName, readOnly, connection,alternativeNames, actions)
 
-class StatelessSmartDevice(
-    override val id : Int,
-    override var commonName : String,
-    override val alternativeNames : Set<String> = emptySet(),
-    override val actions : Set<SmartAction> = emptySet(),
-    override var readOnly : Boolean,
-    var memorizedState : SmartState
-) : SmartDevice(id,commonName,alternativeNames, actions, readOnly)
+class StatelessSmartDevice <A,out T : SmartState<A>>(
+    id : Int,
+    commonName : String,
+    readOnly : Boolean,
+    connection: SmartDeviceConnection,
+    var memorizedState : @UnsafeVariance T,
+    alternativeNames : Set<String> = emptySet(),
+    actions : Set<SmartAction<A>> = emptySet()
+) : SmartDevice(id,commonName, readOnly, connection,alternativeNames, actions)
