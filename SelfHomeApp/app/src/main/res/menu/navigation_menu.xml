@@ -18,12 +18,6 @@
 
         <menu>
             <item
-                android:id="@+id/admin_menu"
-                android:icon="@drawable/admin_panel_settings"
-                android:title="@string/adminSettingsNameMenu"
-                app:showAsAction="ifRoom" />
-
-            <item
                 android:id="@+id/language_settings_menu"
                 android:icon="@drawable/language"
                 android:title="@string/languageSettingsNameMenu"

@@ -17,7 +17,7 @@
     <string name="noServerResponseErr">Non riesco a trovare nessun server SelfHome per fornire il servizio</string>
     <string name="titleHandleNoServerResponseErr">Importante</string>
     <string name="positiveHandleNoServerResponseErr">Riprova</string>
-    <string name="negativeHandleNoServerResponseErr">Ignora</string>
+    <string name="negativeHandleNoServerResponseErr">Aggiungi</string>
 
     <string name="noDeviceFoundErr">NESSUN DISPOSITIVO TROVATO</string>
     <string name="noGroupsFoundErr">NESSUN GRUPPO TROVATO</string>
@@ -55,7 +55,6 @@
 
     <string name="settingsNameMenu">Impostazioni</string>
     <string name="refresh">Aggiorna</string>
-    <string name="adminSettingsNameMenu">Admin</string>
     <string name="languageSettingsNameMenu">Lingua</string>
     <string name="screenSettingsNameMenu">Schermo</string>
     <string name="dayNightScreenSettingsNameMenu">Abilita modanità notturna</string>
@@ -67,11 +66,16 @@
     <string name="genNewKeyPairButton">Nuove chiavi</string>
     <string name="calcSecureResponseButton">Calcola messaggio di sicurezza</string>
     <string name="terminalSettingsNameMenu">Terminale</string>
-    <string name="terminalViewHint">Inserisci il tuo codice qui...</string>
+    <string name="terminalViewHint">Inserisci il tuo codice qui…</string>
     <string name="terminalExecuteButton">Esegui</string>
     <string name="notification_terminal_title">Script terminato</string>
     <string name="notification_terminal_text">Il tuo script è terminato con risultato:</string>
     <string name="notification_find_server_title">Server trovato</string>
     <string name="notification_find_server_text">Puoi usare Selfhome in questa rete</string>
     <string name="connect_server_from_notification">Connettendo al server trovato</string>
+    <string name="neutralHandleNoServerResponseErr">Chiudi</string>
+    <string name="positiveHandleManualIp">Aggiungi</string>
+    <string name="negativeHandleManualIp">Annulla</string>
+    <string name="titleHandleManualIp">Imposta IP</string>
+    <string name="messageHandleManualIp">Aggiungi indirizzo IP del server manualmente</string>
 </resources>
