@@ -1,5 +1,0 @@
-Manifest-Version: 1.0
-Main-Class: it.dani.selfhome.Main
-Class-Path: annotations-19.0.0.jar gson-2.8.6.jar antlr-4.9.3-complete.j
- ar
-
