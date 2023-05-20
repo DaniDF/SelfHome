@@ -1,0 +1,14 @@
+<changelist name="Uncommitted_changes_before_Checkout_at_03_04_2023_20_21_[Changes]1" date="1680546128733" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_03_04_2023_20_21_[Changes]1/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 03/04/2023 20:21 [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="out/artifacts/Middle/Middle.jar" />
+    <option name="AFTER_PATH" value="out/artifacts/Middle/Middle.jar" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_03_04_2023_20_21_[Changes]1/Middle.jar" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/Middle/it/dani/selfhome/listener/SocketListener.class" />
+    <option name="AFTER_PATH" value="out/production/Middle/it/dani/selfhome/listener/SocketListener.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_03_04_2023_20_21_[Changes]1/SocketListener.class" />
+  </binary>
+</changelist>

@@ -100,7 +100,7 @@ int IO_read(int pin, long *value)
     else if(!flagErr && IO_dev > 0) //usb
     {
         char buffer[16];
-        sprintf(buffer,"GET;%d\n",pin);
+        sprintf(buffer,"GET;%d;\n",pin);
         flagErr = (RS232_SendBuf(IO_dev,buffer,strlen(buffer)*sizeof(char)) < 0);
         if(flagErr) perror("IO: READ: Errore invio");
         else usleep(WAIT_TIME * (((pin / 100) > 0)? 20:1));

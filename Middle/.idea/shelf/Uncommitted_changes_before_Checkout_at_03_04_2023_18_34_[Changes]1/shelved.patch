@@ -1,0 +1,15 @@
+Index: src/main/kotlin/driver/DriverLoader.kt
+===================================================================
+diff --git a/src/main/kotlin/driver/DriverLoader.kt b/src/main/kotlin/driver/DriverLoader.kt
+new file mode 100644
+--- /dev/null	
++++ b/src/main/kotlin/driver/DriverLoader.kt	
+@@ -0,0 +1,7 @@
++package driver
++
++class DriverLoader {
++    companion object {
++
++    }
++}
+\ No newline at end of file
