@@ -7,9 +7,14 @@ sleep 10
 Core/./server 4001 Core/devices /dev/ttyACM0 > /home/dani/SelfHome/Core/log  &
 cd Middle
 sleep 10
+#/usr/bin/java -jar Middle.jar 4000 4001 > /home/dani/SelfHome/Middle/log &
 (su dani ; /usr/bin/java -jar Middle.jar 4000 4001 > /home/dani/SelfHome/Middle/log &)
 
+cd ../Flooding
+sleep 10
+(su dani ; /usr/bin/python flooding.py localhost 4000 > /dev/null &)
+
 cd ../SelfHomeBot
-nodejs TelegramBot.js
+#nodejs TelegramBot.js
 
 cd $pwd

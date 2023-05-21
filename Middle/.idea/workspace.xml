@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="Client" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="79374499-4577-4c94-8599-c1dfe93f5e25" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="6d66419b-4c8a-47ee-9261-76fe4bbe94ee" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,79 +18,278 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
-        <option value="Kotlin Data Class" />
-        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="GoLibraries">
     <option name="indexEntireGoPath" value="true" />
   </component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
-  </component>
-  <component name="ProjectId" id="2CwNC7K5m77karQx2ZOAGzaPgtM" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectId" id="1j6wLd7TvB7nQecGGFqzLnu91xt" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.go.format.on.save.advertiser.fired": "true",
-    "RunOnceActivity.go.formatter.settings.were.checked": "true",
-    "RunOnceActivity.go.migrated.go.modules.settings": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "go.import.settings.migrated": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Daniele/Documents/MEGA/Progetti/SelfHome/New/SelfHome/Middle&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="it.dani.selfhome.model" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Daniele\Documents\MEGA\Progetti\SelfHome\New\SelfHome\Middle" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="it.dani.selfhome.listener" />
+      <recent name="it.dani.selfhome.controller" />
+      <recent name="it.dani.selfhome.test.controller" />
+      <recent name="it.dani.selfhome.ipersistance" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Client">
+    <configuration name="Client" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="it.dani.selfhome.test.client.Client" />
+      <module name="Middle" />
+      <option name="PROGRAM_PARAMETERS" value="10.0.0.106 4000" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainSelfHome" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="it.dani.selfhome.Main" />
+      <module name="Middle" />
+      <option name="PROGRAM_PARAMETERS" value="4000 4001" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ParserTest" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="it.dani.selfhome.test.parser.ParserTest" />
+      <module name="Middle" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="it.dani.selfhome.test.parser.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestController" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="it.dani.selfhome.test.controller.Controller" />
+      <module name="Middle" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestCorePersistence" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="it.dani.selfhome.test.core.Persistence" />
+      <module name="Middle" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.TestCorePersistence" />
+      <item itemvalue="Application.TestController" />
+      <item itemvalue="Application.MainSelfHome" />
+      <item itemvalue="Application.ParserTest" />
+      <item itemvalue="Application.Client" />
+    </list>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="79374499-4577-4c94-8599-c1dfe93f5e25" name="Changes" comment="" />
-      <created>1659709564784</created>
+      <changelist id="6d66419b-4c8a-47ee-9261-76fe4bbe94ee" name="Default Changelist" comment="" />
+      <created>1603137795602</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1659709564784</updated>
-      <workItem from="1659709567222" duration="4263000" />
-      <workItem from="1660050482119" duration="8144000" />
-      <workItem from="1660064930197" duration="930000" />
-      <workItem from="1660125240514" duration="4984000" />
-      <workItem from="1660310402347" duration="354000" />
-      <workItem from="1680950304193" duration="58000" />
+      <updated>1603137795602</updated>
+      <workItem from="1603137797226" duration="6115000" />
+      <workItem from="1603182281796" duration="7005000" />
+      <workItem from="1603197631044" duration="11622000" />
+      <workItem from="1603275629393" duration="5116000" />
+      <workItem from="1603283836001" duration="4553000" />
+      <workItem from="1603288585486" duration="10431000" />
+      <workItem from="1603370925019" duration="11776000" />
+      <workItem from="1603447708518" duration="1068000" />
+      <workItem from="1603449010215" duration="14000" />
+      <workItem from="1603464905198" duration="248000" />
+      <workItem from="1603465778701" duration="150000" />
+      <workItem from="1603473948578" duration="634000" />
+      <workItem from="1603474599910" duration="342000" />
+      <workItem from="1603474998454" duration="146000" />
+      <workItem from="1603481257661" duration="18000" />
+      <workItem from="1603488512924" duration="885000" />
+      <workItem from="1603533406154" duration="1579000" />
+      <workItem from="1603555393166" duration="1336000" />
+      <workItem from="1603637583570" duration="3079000" />
+      <workItem from="1603793827618" duration="9044000" />
+      <workItem from="1603807080828" duration="3347000" />
+      <workItem from="1603899849503" duration="5393000" />
+      <workItem from="1604143217260" duration="3734000" />
+      <workItem from="1604154950664" duration="895000" />
+      <workItem from="1604388969136" duration="17000" />
+      <workItem from="1604659827743" duration="4041000" />
+      <workItem from="1604678620769" duration="643000" />
+      <workItem from="1605266385704" duration="236000" />
+      <workItem from="1605696602475" duration="4271000" />
+      <workItem from="1605712701152" duration="209000" />
+      <workItem from="1605718931530" duration="6379000" />
+      <workItem from="1605777760145" duration="2399000" />
+      <workItem from="1605780980899" duration="3427000" />
+      <workItem from="1605952687293" duration="8344000" />
+      <workItem from="1606125385849" duration="910000" />
+      <workItem from="1606392245275" duration="577000" />
+      <workItem from="1606393338062" duration="96000" />
+      <workItem from="1606556428174" duration="4024000" />
+      <workItem from="1607600175330" duration="142000" />
+      <workItem from="1607954848723" duration="3000" />
+      <workItem from="1607975877103" duration="12000" />
+      <workItem from="1608023534007" duration="185000" />
+      <workItem from="1608026313014" duration="522000" />
+      <workItem from="1608539122363" duration="39000" />
+      <workItem from="1608820861560" duration="639000" />
+      <workItem from="1609237646548" duration="98000" />
+      <workItem from="1609240155197" duration="2588000" />
+      <workItem from="1609691246265" duration="721000" />
+      <workItem from="1609710892846" duration="1874000" />
+      <workItem from="1609769328171" duration="165000" />
+      <workItem from="1609964747379" duration="15000" />
+      <workItem from="1610023810822" duration="137000" />
+      <workItem from="1610030493965" duration="5540000" />
+      <workItem from="1610036283176" duration="2599000" />
+      <workItem from="1610100067965" duration="1977000" />
+      <workItem from="1610117052061" duration="901000" />
+      <workItem from="1610275164226" duration="1124000" />
+      <workItem from="1610530633712" duration="2004000" />
+      <workItem from="1610623400632" duration="8000" />
+      <workItem from="1610720553916" duration="648000" />
+      <workItem from="1611051313027" duration="643000" />
+      <workItem from="1611071715538" duration="19000" />
+      <workItem from="1611422087763" duration="912000" />
+      <workItem from="1611999442064" duration="9000" />
+      <workItem from="1622803788275" duration="584000" />
+      <workItem from="1623325352653" duration="1113000" />
+      <workItem from="1624889041510" duration="5000" />
+      <workItem from="1636043432813" duration="2895000" />
+      <workItem from="1636129463330" duration="2307000" />
+      <workItem from="1636200632392" duration="5960000" />
+      <workItem from="1636214437165" duration="3928000" />
+      <workItem from="1636303384708" duration="2810000" />
+      <workItem from="1636479771635" duration="3345000" />
+      <workItem from="1636487836835" duration="3981000" />
+      <workItem from="1636502306722" duration="4069000" />
+      <workItem from="1636558735562" duration="10286000" />
+      <workItem from="1636571437301" duration="19000" />
+      <workItem from="1636576634783" duration="8674000" />
+      <workItem from="1636585833639" duration="1527000" />
+      <workItem from="1636628005436" duration="359000" />
+      <workItem from="1636628384888" duration="1158000" />
+      <workItem from="1636637827089" duration="3648000" />
+      <workItem from="1636642117118" duration="1244000" />
+      <workItem from="1636646140980" duration="5784000" />
+      <workItem from="1636679141023" duration="3835000" />
+      <workItem from="1636720667696" duration="172000" />
+      <workItem from="1636725556418" duration="4000" />
+      <workItem from="1636725593047" duration="1527000" />
+      <workItem from="1636730097241" duration="3184000" />
+      <workItem from="1636741525440" duration="1359000" />
+      <workItem from="1636750843966" duration="2076000" />
+      <workItem from="1636815910290" duration="3824000" />
+      <workItem from="1636825859549" duration="71000" />
+      <workItem from="1636907162079" duration="8532000" />
+      <workItem from="1636966714472" duration="2362000" />
+      <workItem from="1636969180036" duration="3000" />
+      <workItem from="1636969207273" duration="9000" />
+      <workItem from="1636980382941" duration="1544000" />
+      <workItem from="1636989934355" duration="1151000" />
+      <workItem from="1637327591712" duration="9579000" />
+      <workItem from="1637751412500" duration="9000" />
+      <workItem from="1684708009427" duration="479000" />
+      <workItem from="1684709513410" duration="13000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>
     <settings-migrated>true</settings-migrated>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/it/dani/selfhome/automation/icontroller/IController.java</url>
+          <line>49</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/it/dani/selfhome/listener/SocketListener.java</url>
+          <line>82</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/test/it/dani/selfhome/test/parser/ParserTest.java</url>
+          <line>25</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/it/dani/selfhome/listener/SocketListener.java</url>
+          <line>49</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/it/dani/selfhome/listener/parser/DFLiteBaseVisitor.java</url>
+          <line>23</line>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/it/dani/selfhome/model/DeviceState.java</url>
+          <line>46</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/it/dani/selfhome/listener/parser/DFLiteBaseVisitor.java</url>
+          <line>555</line>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/test/it/dani/selfhome/test/client/Client.java</url>
+          <line>15</line>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="this" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>
