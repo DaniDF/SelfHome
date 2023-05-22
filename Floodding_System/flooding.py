@@ -44,14 +44,14 @@ def main(argv, buffer_size=1024):
             sound_process.start()
         elif response == flooding_value:
             print("Received {}".format(response))
-        elif response == not_flooding_value and old_response == flooding_value:
+
+        if response == not_flooding_value and old_response == flooding_value:
             print("Deactivating alarm NO MORE FLOODING")
             sound_process.kill()
             sound_process = None
             sock.sendto(str.encode("SET DISP sirena 0;"), (selfhome_ip, selfhome_port))
 
-        if response != old_response:
-            time.sleep(10)
+        time.sleep(10)
 
         old_response = response
 
