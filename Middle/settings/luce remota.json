@@ -1,0 +1,10 @@
+{
+"config": "light",
+"name": "Luce remota",
+"command_topic": "SelfHome/out/luce_remota/switch",
+"payload_off": "0",
+"payload_on": "1",
+"state_topic": "SelfHome/out/luce_remota/state",
+"unique_id": "selfhome_luce_remota",
+"qos": 0
+}

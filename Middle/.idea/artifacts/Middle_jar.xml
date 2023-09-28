@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact name="Middle:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Middle_jar</output-path>
+    <root id="root">
+      <element id="archive" name="Middle.jar">
+        <element id="module-output" name="Middle" />
+      </element>
+      <element id="library" level="project" name="KotlinJavaRuntime" />
+      <element id="library" level="project" name="gson-2.8.2" />
+      <element id="library" level="project" name="antlr4-runtime-4.13.1" />
+      <element id="library" level="project" name="org.eclipse.paho.mqttv5.client-1.2.5" />
+    </root>
+  </artifact>
+</component>

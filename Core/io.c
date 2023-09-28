@@ -38,16 +38,16 @@ int IO_init_usb(char *devName)  //Da file (e.g. usb)
         else if(RS232_OpenComport(portNum, BDRATE, MODE,FLOWCTRL) != 0) flagErr = 1;
         
         IO_dev = (flagErr)? IO_NOT_ASSIGNED : portNum;
-        if(flagErr) perror("IO: Porta non assegnata");
+        if(flagErr) perror("IO: Port not assigned");
 
         char response;
         flagErr = flagErr || (RS232_SendByte(IO_dev,IO_WELCOME_MESSAGE) != 1 /*!= 0*/);
-        if(flagErr) perror("IO: Errore invio welcome");
+        if(flagErr) perror("IO: Error sending welcome");
         usleep(WAIT_TIME);
         flagErr = flagErr || (RS232_PollComport(IO_dev,&response,sizeof(char)) != sizeof(char));
-        if(flagErr) perror("IO: Errore ricezione risposta"), printf("ricevuto = %d\n",(int)response);
+        if(flagErr) perror("IO: Error receiving response"), printf("received = %d\n",(int)response);
         flagErr = flagErr || response != IO_WELCOME_MESSAGE;
-        if(flagErr) perror("IO: Errore ricevuto non welcome"), printf("ricevuto = %d\n",(int)response);
+        if(flagErr) perror("IO: Error received not welcome"), printf("received = %d\n",(int)response);
     }
     else flagErr = 1;   //Se inizializzazione fatta
 
@@ -71,15 +71,15 @@ int IO_write(int pin, long value)
         char buffer[128];
         sprintf(buffer,"SET;%d;%li\n",pin,value);
         flagErr = (RS232_SendBuf(IO_dev,buffer,strlen(buffer)*sizeof(char)) < 0);
-        if(flagErr) perror("IO: WRITE: Errore invio");
+        if(flagErr) perror("IO: WRITE: Error sending");
         else usleep(WAIT_TIME);
 
         flagErr = (RS232_PollComport(IO_dev,buffer,sizeof(char)) != 1);
-        if(flagErr) perror("IO: WRITE: Errore ricezione"), printf("ricevuto = %d\n",(int)(buffer[0]));
+        if(flagErr) perror("IO: WRITE: Error receiving"), printf("received = %d\n",(int)(buffer[0]));
         flagErr = flagErr || buffer[0] == IO_ERR_RESPONSE || buffer[0] != IO_OK_RESPONSE;
 
-        if(flagErr && buffer[0] == IO_ERR_RESPONSE) perror("IO: WRITE: Errore ricevuto messaggio errore");
-        else if(flagErr && buffer[0] != IO_OK_RESPONSE) perror("IO: WRITE: Errore ricevuto non OK");
+        if(flagErr && buffer[0] == IO_ERR_RESPONSE) perror("IO: WRITE: Error received error message");
+        else if(flagErr && buffer[0] != IO_OK_RESPONSE) perror("IO: WRITE: Error received not OK");
     }
 
     return -1 * flagErr;
@@ -102,15 +102,15 @@ int IO_read(int pin, long *value)
         char buffer[16];
         sprintf(buffer,"GET;%d;\n",pin);
         flagErr = (RS232_SendBuf(IO_dev,buffer,strlen(buffer)*sizeof(char)) < 0);
-        if(flagErr) perror("IO: READ: Errore invio");
+        if(flagErr) perror("IO: READ: Error sending");
         else usleep(WAIT_TIME * (((pin / 100) > 0)? 20:1));
 
         flagErr = (RS232_PollComport(IO_dev,buffer,sizeof(char)) != 1);
-        if(flagErr) perror("IO: READ: Errore ricezione");
+        if(flagErr) perror("IO: READ: Error receiving");
         flagErr = flagErr || (buffer[0] < 0);
         if(!flagErr) *value = buffer[0];
 
-        if(flagErr && (buffer[0] < 0)) perror("IO: READ: Errore ricevuto messaggio non valido");
+        if(flagErr && (buffer[0] < 0)) perror("IO: READ: Error received a not valid message");
     }
 
     return -1 * flagErr;
@@ -138,7 +138,7 @@ int IO_wakeUp(void)
     if(IO_dev == IO_NOT_ASSIGNED && devNameStore != NULL)
     {
         flagErr = IO_init_usb(devNameStore);
-        if(flagErr) perror("IO: wakeup: Errore init");
+        if(flagErr) perror("IO: wakeup: Error init");
     }
 
     return flagErr;

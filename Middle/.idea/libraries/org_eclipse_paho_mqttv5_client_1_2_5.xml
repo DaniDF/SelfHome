@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="org.eclipse.paho.mqttv5.client-1.2.5">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/org.eclipse.paho.mqttv5.client-1.2.5.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

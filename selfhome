@@ -1,0 +1,23 @@
+#!/bin/bash
+
+### BEGIN INIT INFO
+# Provides:		selfhome server
+# Required-Start:	$remote_fs $syslog
+# Required-Stop:	$remote_fs $syslog
+# Default-Start:	2 3 4 5
+# Default-Stop:		
+# Short-Description:	my home automation server
+### END INIT INFO
+
+if [[ $1 == "stop" || $1 == "restart" ]]
+then
+	echo "hello" > /dev/null
+fi
+
+if [[ $1 == "start" || $1 == "restart" ]]
+then
+	/home/dani/SelfHome/./starter &
+	#sleep 10
+	#/home/dani/SelfHome/Core/./server 4001 /home/dani/SelfHome/Core/devices /dev/ttyACM0 &
+	#/usr/bin/java -jar /home/dani/SelfHome/Middle/Middle.jar 4000 4001 &
+fi

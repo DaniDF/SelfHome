@@ -1,0 +1,13 @@
+T__0=1
+T__1=2
+T__2=3
+NUMBER=4
+WORD=5
+SPACE=6
+NL=7
+WS=8
+'GET'=1
+'SET'=2
+'LST'=3
+' '=6
+'\n'=7

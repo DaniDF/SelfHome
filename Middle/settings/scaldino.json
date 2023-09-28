@@ -1,0 +1,9 @@
+{
+"config": "fan",
+"name": "Scaldino",
+"command_topic": "SelfHome/out/scaldino/switch",
+"payload_off": "0",
+"payload_on": "1",
+"unique_id": "selfhome_scaldino",
+"qos": 0
+}

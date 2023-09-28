@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <dimen name="toolbar_space">5dp</dimen>
-    <dimen name="title_size">20sp</dimen>
-
-    <dimen name="action_button_width">192dp</dimen>
-    <dimen name="action_button_height">45dp</dimen>
-</resources>

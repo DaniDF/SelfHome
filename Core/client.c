@@ -142,7 +142,7 @@ int main(int argc, char *argv[])
 	{
 		if(line[contLine] == '\n')
 		{
-			//line[contLine] = '\0';
+			line[contLine] = '\0';
 			if(sendto(sockUDP,line,(contLine+1)*sizeof(char),0,(struct sockaddr*)&addrServer,sizeof(addrServer)) < 0) perror("Errore scrittura");
 
 			if(recvfrom(sockUDP,line,255*sizeof(char),0,(struct sockaddr*)&temp,&lenTemp) < 0) perror("Errore receive");

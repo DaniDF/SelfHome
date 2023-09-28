@@ -35,45 +35,45 @@ int main(int argc, char *argv[])
 	signal(SIGINT,softStop);
 	signal(SIGALRM,shut);
 
-	if(argc != 3 && argc != 4) perror("Errore numero argomenti"), exit(-1);
+	if(argc != 3 && argc != 4) perror("Error number argument"), exit(-1);
 
 	for(int cont = 0; cont < strlen(argv[1]); cont++)
 	{
-		if(argv[1][cont] < '0' || argv[1][cont] > '9') perror("Errore porta non numerica"), exit(-1);
+		if(argv[1][cont] < '0' || argv[1][cont] > '9') perror("Error not a numeric port"), exit(-1);
 	}
 	int port = atoi(argv[1]);
-	if(port < 1024) perror("Porta non valida"), exit(-1);
+	if(port < 1024) perror("Error port not valid"), exit(-1);
 
-	write(STDOUT,"Avvio SelfHome.core\n",21*sizeof(char));
-	write(STDOUT,"Carico dispositivi\t",19*sizeof(char));
+	write(STDOUT,"Starting SelfHome.core\n",23*sizeof(char));
+	write(STDOUT,"Loading devices\t",16*sizeof(char));
 
 	Device *devices[20];
 	int countDevices = loadDevices(argv[2],devices,20);
-	if(countDevices < 0) perror("Errore caricamento dispositivi"), exit(-2);
-	write(STDOUT,"Fatto\n",6*sizeof(char));
+	if(countDevices < 0) perror("Error while loading devices"), exit(-2);
+	write(STDOUT,"Done\n",5*sizeof(char));
 
-	write(STDOUT,"Inizializzazione periferica\t",28*sizeof(char));
+	write(STDOUT,"Init peripheral\t",16*sizeof(char));
 
 	if(argc == 4 && IO_init_usb(argv[3]) < 0)
 	{
-		perror("Errore inizializzazione periferica esterna\n\tprovo con GPIO!");
-		if(IO_init() < 0) perror("Errore inizializzazione anche con GPIO"), exit(-4);
+		perror("Error init peripheral\n\tAttempting with GPIO!");
+		if(IO_init() < 0) perror("Error init with GPIO too"), exit(-4);
 	}
-	else if(argc == 3 && IO_init() < 0) perror("Errore inizializzazione GPIO"), exit(-4);
+	else if(argc == 3 && IO_init() < 0) perror("Error init GPIO"), exit(-4);
 
-	write(STDOUT,"Fatto\n",6*sizeof(char));
+	write(STDOUT,"Done\n",5*sizeof(char));
 
 	for(int count = 0; count < countDevices; count++)
 	{
-		if(count == 0) write(STDOUT,"Inizializzazione un dispositivo\t",33*sizeof(char));
-		else printf("\rInizializzazione %d dispositivi\t",count+1);
+		if(count == 0) write(STDOUT,"Init 1 device\t",14*sizeof(char));
+		else printf("\rInit %d devices\t",count+1);
 
-		if(IO_write(devices[count]->pin,devices[count]->defaultStatus) < 0) perror("Errore inizializzazione dispositivo");
+		if(IO_write(devices[count]->pin,devices[count]->defaultStatus) < 0) perror("Error init device");
 		else devices[count]->status = devices[count]->defaultStatus;
 		if(!devices[count]->pulse) devices[count]->status = 0;
 	}
 
-	printf("Fatto\n");
+	printf("Done\n");
 
 	struct sockaddr_in addrServer;
 	memset((char*)&addrServer,0,sizeof(addrServer));
@@ -90,25 +90,13 @@ int main(int argc, char *argv[])
 
 	//UDP
 	int sockUDP;
-	if((sockUDP = socket(AF_INET,SOCK_DGRAM,0)) < 0) perror("Errore creazione socket UDP"), exit(-5);
+	if((sockUDP = socket(AF_INET,SOCK_DGRAM,0)) < 0) perror("Error init UDP socket"), exit(-5);
 	int on = 1;
-	if(setsockopt(sockUDP, SOL_SOCKET, SO_REUSEADDR, &on, sizeof(on)) < 0) perror("Errore opzioni UDP"), exit(-5);
-	if(bind(sockUDP,(struct sockaddr*)&addrServer,sizeof(addrServer)) < 0) perror("Errore bind UDP"), exit(-6);
+	if(setsockopt(sockUDP, SOL_SOCKET, SO_REUSEADDR, &on, sizeof(on)) < 0) perror("Error UDP options"), exit(-5);
+	if(bind(sockUDP,(struct sockaddr*)&addrServer,sizeof(addrServer)) < 0) perror("Error UDP bind"), exit(-6);
 	//Fine UDP
-	
-	//TCP
-	int sockTCP;
-	if((sockTCP = socket(AF_INET,SOCK_STREAM,0)) < 0) perror("Errore creazione socket TCP"), exit(-5);
-	if(setsockopt(sockTCP, SOL_SOCKET, SO_REUSEADDR, &on, sizeof(on)) < 0) perror("Errore opzioni TCP"), exit(-5);
-	if(bind(sockTCP,(struct sockaddr*)&addrServer,sizeof(addrServer)) < 0) perror("Errore bind TCP"), exit(-6);
-	if(listen(sockTCP,5) < 0) perror("Errore listen TCP"), exit(-7);
-	//Fine TCP
-
-	fd_set setRead;
 
 	write(STDOUT,"Server online\n\n",15*sizeof(char));
-
-	IO_sleep(), flagSleep = 1;
 
 	struct timeval time;
 	time.tv_sec = 3;
@@ -116,76 +104,45 @@ int main(int argc, char *argv[])
 
 	while(1)
 	{
-		struct timeval time;
-		time.tv_sec = 3;
-		time.tv_usec = 0;
-
-		FD_ZERO(&setRead);
-		FD_SET(sockUDP,&setRead);
-		FD_SET(sockTCP,&setRead);
-
-		if(select(MAX(sockUDP,sockTCP)+1,&setRead,NULL,NULL,&time) < 0)
-		{
-			if(errno == EINTR) continue;
-			else perror("Errore select"), exit(-7);
-		}
-
 		char buffer[255];
-		
-		IO_wakeUp(), flagSleep = 0;
 
-
-		if(FD_ISSET(sockUDP,&setRead))//UDP
+		int dim = 0;
+		if((dim = recvfrom(sockUDP,buffer,255*sizeof(char),0,(struct sockaddr*)&addrClient,&lenClient)) < 0) perror("Error receive UDP");
+		else
 		{
-			int dim = 0;
-			if((dim = recvfrom(sockUDP,buffer,255*sizeof(char),0,(struct sockaddr*)&addrClient,&lenClient)) < 0) perror("Errore receive UDP");
+			buffer[dim-1] = '\0';
+			printf("Received from %s value %s\n",inet_ntoa(addrClient.sin_addr),buffer);
+
+			if(dim >= 3 && strncmp("LST",buffer,3) == 0)
+			{
+				char listS[512];
+				if(list(listS,512,devices,countDevices) >= 0)
+				{
+					if(sendto(sockUDP,listS,(strlen(listS)+1)*sizeof(char),0,(struct sockaddr*)&addrClient,lenClient) < 0) perror("Error writing");
+				}
+			}
 			else
 			{
-				buffer[dim-1] = '\0';
-				printf("Ricevuto da %s valore %s\n",inet_ntoa(addrClient.sin_addr),buffer);
-
 				int result = changeRequestReply(buffer,devices,countDevices);
 				char sResult[4];
 				if(result < 0) sprintf(sResult,"ERR");
 				else if(result == 0) sprintf(sResult,"OK");
 				else sprintf(sResult,"%d",result - 1);
 
-				printf("Rispondo a %s con messaggio %s\n\n",inet_ntoa(addrClient.sin_addr),sResult);
-				if(sendto(sockUDP,sResult,(strlen(sResult)+1)*sizeof(char),0,(struct sockaddr*)&addrClient,lenClient) < 0) perror("Errore scrittura");
+				printf("Replying to %s with message %s\n\n",inet_ntoa(addrClient.sin_addr),sResult);
+				if(sendto(sockUDP,sResult,(strlen(sResult)+1)*sizeof(char),0,(struct sockaddr*)&addrClient,lenClient) < 0) perror("Errore writing");
 			}
-		}//Fine ISSET UDP
-
-		if(FD_ISSET(sockTCP,&setRead))//TCP
-		{
-			int conn = accept(sockTCP,(struct sockaddr*)&addrClient,&lenClient);
-			int dim = 0;
-			int flagErr = (conn < 0) || ((dim = read(conn,buffer,255*sizeof(char))) < 0);
-
-			if(!flagErr) buffer[dim - 1] = '\0';
-
-			if(!flagErr && dim >= 3 && strncmp("LST",buffer,3) == 0)
-			{
-				printf("Ricevuto da %s valore %s\n",inet_ntoa(addrClient.sin_addr),buffer);
-				char listS[512];
-				flagErr = (list(listS,512,devices,countDevices) < 0);
-				if(!flagErr && (flagErr = write(conn,listS,(strlen(listS)+1)*sizeof(char))) < 0) perror("Errore write TCP");
-			}
-
-			shutdown(conn,SHUT_WR);
-			close(conn);
-		}//Fine TCP
-
-		if(time.tv_sec == 0 && time.tv_usec == 0) IO_sleep(), flagSleep = 1;
+		}
 	}
 
-	perror("Errore server generico");
+	perror("Generic error");
 
 	return -10;
 }
 
 void softStop(int numSig)
 {
-	printf("\rTerminazione pulita\n");
+	printf("\rClean exit\n");
 
 	//if(flagSleep) IO_wakeUp();
 	IO_close();
@@ -288,6 +245,8 @@ long changeRequestReply(char *buffer, Device *devices[], int countDevices)
 
 					if(contToShut+1 > MAX_TO_SHUT) {usleep(MIN_PULSE_DURATION); kill(getpid(),SIGALRM); }
 
+					IO_wakeUp(), flagSleep = 0;
+
 					if(devices[cont]->pulse)
 					{
 						flagErr = flagErr || (IO_write(devices[cont]->pin,HIGH) < 0);
@@ -298,7 +257,8 @@ long changeRequestReply(char *buffer, Device *devices[], int countDevices)
 						flagErr = flagErr || (IO_write(devices[cont]->pin,stato) < 0);
 						if(!flagErr) devices[cont]->status = stato;
 					}
-					
+
+					IO_sleep(), flagSleep = 1;
 				}
 			}
 

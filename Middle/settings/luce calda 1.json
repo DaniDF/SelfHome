@@ -1,0 +1,10 @@
+{
+"config": "light",
+"name": "Luce calda 1",
+"command_topic": "SelfHome/out/luce_calda_1/switch",
+"payload_off": "0",
+"payload_on": "1",
+"state_topic": "SelfHome/out/luce_calda_1/state",
+"unique_id": "selfhome_luce_calda_1",
+"qos": 0
+}

@@ -1,0 +1,10 @@
+{
+"config": "switch",
+"name": "Ricarica scooter",
+"command_topic": "SelfHome/out/ricarica_scooter/set",
+"payload_off": "0",
+"payload_on": "1",
+"state_topic": "SelfHome/out/ricarica_scooter/state",
+"unique_id": "selfhome_ricarica_scooter",
+"qos": 0
+}
