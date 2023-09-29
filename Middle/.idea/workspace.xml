@@ -9,7 +9,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="065f19c3-a7a3-47a4-bab1-3acb60942d21" name="Changes" comment="" />
+    <list default="true" id="065f19c3-a7a3-47a4-bab1-3acb60942d21" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings/middle_conf" beforeDir="false" afterPath="$PROJECT_DIR$/settings/middle_conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/dani/homeassistant/HomeAssistantService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/it/dani/homeassistant/HomeAssistantService.kt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,6 +27,9 @@
         <option value="Kotlin Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="GoLibraries">
     <option name="indexEntireGoPath" value="true" />
@@ -44,6 +52,7 @@
     "RunOnceActivity.go.formatter.settings.were.checked": "true",
     "RunOnceActivity.go.migrated.go.modules.settings": "true",
     "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
     "go.import.settings.migrated": "true",
     "last_opened_file_path": "C:/Users/Daniele/Documents/MEGA/Progetti/Middle/src/main/kotlin/it/dani/listener/parser",
     "node.js.detected.package.eslint": "true",
@@ -74,7 +83,7 @@
     <configuration name="MainKt" type="JetRunConfigurationType" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="it.dani.MainKt" />
       <module name="Middle" />
-      <option name="PROGRAM_PARAMETERS" value="-c &quot;C:\Users\Daniele\Documents\MEGA\Progetti\Middle\settings\middle_conf&quot;" />
+      <option name="PROGRAM_PARAMETERS" value="-c &quot;C:\Users\Daniele\Documents\MEGA\Progetti\SelfHome\NewRefactoring\SelfHome\Middle\settings\middle_conf&quot;" />
       <shortenClasspath name="NONE" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -94,6 +103,7 @@
       <workItem from="1695883433175" duration="18875000" />
       <workItem from="1695902777426" duration="3000" />
       <workItem from="1695905685764" duration="4072000" />
+      <workItem from="1695980905140" duration="723000" />
     </task>
     <servers />
   </component>

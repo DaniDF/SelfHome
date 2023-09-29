@@ -40,7 +40,12 @@ object HomeAssistantService {
                 if (settingsPath.name.endsWith(".json") && device.name == settingsPath.name.removeSuffix(".json")) {
                     println("found: ${device.name}")
                     val config = (gson.fromJson(settingsPath.readText(), Map::class.java) as MutableMap<*, *>).map { (key, value) ->
-                        key.toString() to value.toString()
+                        if(key == "qos") {
+                            key.toString() to value.toString().toFloat().toInt().toString()
+                        } else {
+                            key.toString() to value.toString()
+                        }
+
                     }
                     device.settings += config
                 }
