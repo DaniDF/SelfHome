@@ -29,9 +29,9 @@ class HomeAssistant(private val mqttClient: IMqttClient, private val controller:
         this.mqttClient.connect()
     }
 
-    fun subscribe() {
+    fun subscribe(selfhomeTopic: String) {
         this.mqttClient.subscribe("homeassistant/#", 0)
-        this.mqttClient.subscribe("SelfHome/#", 0)
+        this.mqttClient.subscribe("$selfhomeTopic/#", 0)
     }
 
     fun disconnect() {

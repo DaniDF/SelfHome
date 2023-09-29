@@ -4,15 +4,11 @@ pwd=$PWD
 cd /home/dani/SelfHome/
 
 sleep 10
-Core/./server 4001 Core/devices /dev/ttyACM0 > /home/dani/SelfHome/Core/log  &
+nice -n -20 Core/./server 4001 Core/devices /dev/ttyACM0 > /home/dani/SelfHome/Core/log &
 
 cd Middle
 sleep 10
-(su -c "/usr/bin/java -jar Middle.jar 4000 4001" dani > /home/dani/SelfHome/Middle/log &)
-
-cd ../Mqtt
-sleep 20
-(su -c "/usr/bin/java -jar MQTT_sensors.jar 10.0.254.103 127.0.0.1 4000 settings" dani > /dev/null 2>&1 &)
+(su -c "/usr/bin/java -jar Middle.jar -c settings/middle_conf" dani > /home/dani/SelfHome/Middle/log &)
 
 #cd ../Flooding
 #sleep 10

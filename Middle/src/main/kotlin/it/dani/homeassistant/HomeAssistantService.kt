@@ -8,7 +8,8 @@ import java.io.File
 
 object HomeAssistantService {
 
-    private const val UUID = "selfhome-d8e1-40ef-9e59-0d66b3bc525e"
+    private const val TOPIC = "Selfhome"
+    private const val UUID = "$TOPIC-ae43-5001-eda2-0d66b3b1686"// TODO "selfhome-d8e1-40ef-9e59-0d66b3bc525e"
 
     fun startService(ipBroker: String, portBroker: Int, settingsPath: File, controller: Controller): HomeAssistant {
         val uriBroker = "tcp://$ipBroker:$portBroker"
@@ -16,7 +17,7 @@ object HomeAssistantService {
 
         val ha = HomeAssistant(mqttClient, controller).apply {
             this.connect()
-            this.subscribe()
+            this.subscribe(TOPIC)
         }
 
         controller.onNewDevice += { dev ->

@@ -1,0 +1,10 @@
+{
+"config": "light",
+"name": "Luce 1",
+"command_topic": "Temp/out/luce1/switch",
+"payload_off": "0",
+"payload_on": "1",
+"state_topic": "Temp/out/luce1/state",
+"unique_id": "Temp_luce1",
+"qos": 0
+}

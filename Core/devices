@@ -1,4 +1,6 @@
 luce calda 1;4;0;1;0
 luce fredda 1;2;0;1;0
-prova;5;0;0;0
+ricarica scooter;5;0;1;0
 scaldino;3;0;1;1
+pulsante remoto;105;0;0;0
+luce remota;103;0;1;0

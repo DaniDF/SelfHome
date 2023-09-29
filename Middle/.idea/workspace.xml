@@ -9,10 +9,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="065f19c3-a7a3-47a4-bab1-3acb60942d21" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="065f19c3-a7a3-47a4-bab1-3acb60942d21" name="Changes" comment="Bug fix non Int QOS">
+      <change afterPath="$PROJECT_DIR$/settings/luce1.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/settings/pulsante1.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Core/devices" beforeDir="false" afterPath="$PROJECT_DIR$/../Core/devices" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Core/io.c" beforeDir="false" afterPath="$PROJECT_DIR$/../Core/io.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Core/server.c" beforeDir="false" afterPath="$PROJECT_DIR$/../Core/server.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings/luce calda 1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings/luce fredda 1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings/luce remota.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/settings/middle_conf" beforeDir="false" afterPath="$PROJECT_DIR$/settings/middle_conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings/pulsante remoto.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings/ricarica scooter.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings/scaldino.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/dani/homeassistant/HomeAssistant.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/it/dani/homeassistant/HomeAssistant.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/dani/homeassistant/HomeAssistantService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/it/dani/homeassistant/HomeAssistantService.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -45,26 +56,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.go.formatter.settings.were.checked": "true",
-    "RunOnceActivity.go.migrated.go.modules.settings": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "go.import.settings.migrated": "true",
-    "last_opened_file_path": "C:/Users/Daniele/Documents/MEGA/Progetti/Middle/src/main/kotlin/it/dani/listener/parser",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Daniele/Documents/MEGA/Progetti/Middle/src/main/kotlin/it/dani/listener/parser&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Daniele\Documents\MEGA\Progetti\Middle\src\main\kotlin\it\dani\listener\parser" />
@@ -103,12 +114,28 @@
       <workItem from="1695883433175" duration="18875000" />
       <workItem from="1695902777426" duration="3000" />
       <workItem from="1695905685764" duration="4072000" />
-      <workItem from="1695980905140" duration="723000" />
+      <workItem from="1695980905140" duration="829000" />
+      <workItem from="1695987163416" duration="2254000" />
+      <workItem from="1695994745269" duration="3000" />
+      <workItem from="1696003532529" duration="177000" />
     </task>
+    <task id="LOCAL-00001" summary="Bug fix non Int QOS">
+      <option name="closed" value="true" />
+      <created>1695981722921</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1695981722921</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Bug fix non Int QOS" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bug fix non Int QOS" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>

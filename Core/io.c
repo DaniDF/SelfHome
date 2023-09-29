@@ -101,12 +101,14 @@ int IO_read(int pin, long *value)
     {
         char buffer[16];
         sprintf(buffer,"GET;%d;\n",pin);
+
         flagErr = (RS232_SendBuf(IO_dev,buffer,strlen(buffer)*sizeof(char)) < 0);
         if(flagErr) perror("IO: READ: Error sending");
         else usleep(WAIT_TIME * (((pin / 100) > 0)? 20:1));
 
         flagErr = (RS232_PollComport(IO_dev,buffer,sizeof(char)) != 1);
         if(flagErr) perror("IO: READ: Error receiving");
+
         flagErr = flagErr || (buffer[0] < 0);
         if(!flagErr) *value = buffer[0];
 

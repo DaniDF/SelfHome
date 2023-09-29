@@ -203,7 +203,9 @@ long changeRequestReply(char *buffer, Device *devices[], int countDevices)
 					{
 						if(!devices[cont]->changeable)
 						{
+							IO_wakeUp(), flagSleep = 0;
 							flagErr = flagErr || IO_read(devices[cont]->pin,&(devices[cont]->status)) < 0;
+							IO_sleep(), flagSleep = 1;
 						}
 						if(!flagErr) result = devices[cont]->status + 1;	//devices[cont]->status (range 0 oppure 1) result (range 1 oppure 2) per questo il '+1'
 					}
