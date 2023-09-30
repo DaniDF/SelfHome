@@ -1,9 +1,0 @@
-{
-"config": "binary_sensor",
-"name": "Pulsante 1",
-"payload_off": "0",
-"payload_on": "1",
-"state_topic": "Temp/in/pulsante1/state",
-"unique_id": "Temp_pulsante1",
-"qos": 1
-}

@@ -35,6 +35,8 @@ class RequestListener(private val listenPort: Int, private val controller: Contr
                 }
             }
         }
+    }.apply {
+        this.priority = Thread.MAX_PRIORITY
     }
 
     override fun start() {

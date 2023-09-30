@@ -1,0 +1,10 @@
+{
+"config": "binary_sensor",
+"name": "Pulsante scrivania",
+"expire_after": 60,
+"payload_off": "0",
+"payload_on": "1",
+"state_topic": "SelfHome/in/pulsante_scrivania/state",
+"unique_id": "selfhome_pulsante_scrivania",
+"qos": 0
+}

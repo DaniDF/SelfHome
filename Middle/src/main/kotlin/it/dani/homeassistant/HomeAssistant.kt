@@ -7,6 +7,7 @@ import it.dani.model.DeviceState
 import it.dani.selfhome.DeviceStateChangeException
 import org.eclipse.paho.mqttv5.client.IMqttClient
 import org.eclipse.paho.mqttv5.common.MqttMessage
+import kotlin.math.max
 
 class HomeAssistant(private val mqttClient: IMqttClient, private val controller: Controller) {
 
@@ -17,8 +18,8 @@ class HomeAssistant(private val mqttClient: IMqttClient, private val controller:
                 ?.let { dev ->
                     try {
                         dev.state = DeviceState(p1)
-                    } catch (_: DeviceStateChangeException) {
-                        println("Error while changing state $dev")
+                    } catch (e: DeviceStateChangeException) {
+                        println("Error while changing state $dev\n${e.message}")
                     }
                 }
         }
@@ -43,9 +44,26 @@ class HomeAssistant(private val mqttClient: IMqttClient, private val controller:
         device.settings.remove("config")
         val gson = GsonBuilder().create()
         val json = gson.toJson(device.settings)
-        this.mqttClient.publish("homeassistant/$deviceType/${device.name.replace(" ", "_")}/config", json.toByteArray(), 1, true)
 
-        device.onStateChange += { this.updateDeviceStatus(it) }
+        if(device.settings["expire_after"] != null) {
+
+            val expireTimeout: Long = max(1L, device.settings["expire_after"]!!.toFloat().toLong() / 30)
+
+            Thread {
+                while(true) {
+                    device.state
+                    this.updateDeviceStatus(device)
+                    Thread.sleep(expireTimeout * 1000)
+                }
+            }.apply {
+                this.priority = Thread.MIN_PRIORITY
+            }.start()
+
+        } else {
+            device.onStateChange += { this.updateDeviceStatus(it) }
+        }
+
+        this.mqttClient.publish("homeassistant/$deviceType/${device.name.replace(" ", "_")}/config", json.toByteArray(), 1, true)
     }
 
     private fun updateDeviceStatus(device: Device) {

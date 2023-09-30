@@ -6,9 +6,9 @@ data class Device(
     val name: String,
     val initDeviceState: DeviceState
 ) {
-    var onSetUpdateState: (DeviceState) -> Any = { }
+    var onSetState: (DeviceState) -> Any = { }
     val onStateChange: MutableList<(Device) -> Any> = ArrayList()
-    var onGetUpdateState: (Device) -> DeviceState = { DeviceState("") }
+    var onGetState: (Device) -> DeviceState = { DeviceState("") }
 
     val settings: MutableMap<String, String> = HashMap()
 
@@ -16,7 +16,7 @@ data class Device(
         set(value) {
             if(field != value) {
                 try {
-                    this.onSetUpdateState(value)
+                    this.onSetState(value)
                     field = value
                     this.onStateChange.forEach { it(this) }
                 } catch (e: DeviceStateChangeException) {
@@ -25,7 +25,7 @@ data class Device(
             }
         }
         get() {
-            val value = this.onGetUpdateState(this)
+            val value = this.onGetState(this)
 
             if(field != value) {
                 field = value

@@ -10,21 +10,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="065f19c3-a7a3-47a4-bab1-3acb60942d21" name="Changes" comment="Bug fix non Int QOS">
-      <change afterPath="$PROJECT_DIR$/settings/luce1.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings/pulsante1.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Core/devices" beforeDir="false" afterPath="$PROJECT_DIR$/../Core/devices" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Core/io.c" beforeDir="false" afterPath="$PROJECT_DIR$/../Core/io.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Core/server.c" beforeDir="false" afterPath="$PROJECT_DIR$/../Core/server.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings/luce calda 1.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings/luce fredda 1.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/settings/luce remota.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings/luce1.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/settings/middle_conf" beforeDir="false" afterPath="$PROJECT_DIR$/settings/middle_conf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/settings/pulsante remoto.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings/ricarica scooter.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings/scaldino.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings/pulsante1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/dani/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/it/dani/Main.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/dani/homeassistant/HomeAssistant.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/it/dani/homeassistant/HomeAssistant.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/dani/homeassistant/HomeAssistantService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/it/dani/homeassistant/HomeAssistantService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/dani/listener/RequestListener.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/it/dani/listener/RequestListener.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/dani/model/Device.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/it/dani/model/Device.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/dani/selfhome/SelfHomeController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/it/dani/selfhome/SelfHomeController.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,6 +115,10 @@
       <workItem from="1695987163416" duration="2254000" />
       <workItem from="1695994745269" duration="3000" />
       <workItem from="1696003532529" duration="177000" />
+      <workItem from="1696004060687" duration="4685000" />
+      <workItem from="1696071154460" duration="1454000" />
+      <workItem from="1696082063208" duration="520000" />
+      <workItem from="1696094457838" duration="2474000" />
     </task>
     <task id="LOCAL-00001" summary="Bug fix non Int QOS">
       <option name="closed" value="true" />

@@ -8,8 +8,8 @@ import java.io.File
 
 object HomeAssistantService {
 
-    private const val TOPIC = "Selfhome"
-    private const val UUID = "$TOPIC-ae43-5001-eda2-0d66b3b1686"// TODO "selfhome-d8e1-40ef-9e59-0d66b3bc525e"
+    private const val TOPIC = "SelfHome"
+    private const val UUID = "$TOPIC-d8e1-40ef-9e59-0d66b3bc525e"
 
     fun startService(ipBroker: String, portBroker: Int, settingsPath: File, controller: Controller): HomeAssistant {
         val uriBroker = "tcp://$ipBroker:$portBroker"
@@ -41,7 +41,7 @@ object HomeAssistantService {
                 if (settingsPath.name.endsWith(".json") && device.name == settingsPath.name.removeSuffix(".json")) {
                     println("found: ${device.name}")
                     val config = (gson.fromJson(settingsPath.readText(), Map::class.java) as MutableMap<*, *>).map { (key, value) ->
-                        if(key == "qos") {
+                        if(key in arrayOf("qos", "expire_after")) {
                             key.toString() to value.toString().toFloat().toInt().toString()
                         } else {
                             key.toString() to value.toString()

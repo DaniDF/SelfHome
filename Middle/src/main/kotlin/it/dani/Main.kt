@@ -59,7 +59,7 @@ fun main(args: Array<String>) {
     val listeners: List<Listener> = listOf(
         RequestListener(listeningPort, controller),
         WhereAreYouListener(wayNet, wayPort, listeningPort)
-    ).also { l -> l.forEach{ it.start() } }
+    ).onEach { it.start() }
 
     HomeAssistantService.startService(brokerAddress, brokerPort, settingsPath, controller).also { controller.getDevices() }
 

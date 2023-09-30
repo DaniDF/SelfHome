@@ -13,8 +13,8 @@ class SelfHomeController(private val connector: Connector): Controller() {
             this.connector.send("LST").let { response ->
                 response.trim().split("\n").forEach { deviceName ->
                     this.devs += Device(deviceName, DeviceState("")).apply {
-                        this.onGetUpdateState = { this@SelfHomeController.getState(this.name) }
-                        this.onSetUpdateState = { deviceState ->  this@SelfHomeController.setState(this.name, deviceState) }
+                        this.onGetState = { this@SelfHomeController.getState(this.name) }
+                        this.onSetState = { deviceState ->  this@SelfHomeController.setState(this.name, deviceState) }
                     }.also { dev ->
                         this@SelfHomeController.onNewDevice.forEach { it(dev) }
                     }
