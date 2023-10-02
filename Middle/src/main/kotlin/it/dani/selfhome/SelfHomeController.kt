@@ -14,7 +14,7 @@ class SelfHomeController(private val connector: Connector): Controller() {
                 response.trim().split("\n").forEach { deviceName ->
                     this.devs += Device(deviceName, DeviceState("")).apply {
                         this.onGetState = { this@SelfHomeController.getState(this.name) }
-                        this.onSetState = { deviceState ->  this@SelfHomeController.setState(this.name, deviceState) }
+                        this.onSetState = { deviceState -> this@SelfHomeController.setState(this.name, deviceState) }
                     }.also { dev ->
                         this@SelfHomeController.onNewDevice.forEach { it(dev) }
                     }

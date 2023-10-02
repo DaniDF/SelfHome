@@ -8,7 +8,7 @@ data class Device(
 ) {
     var onSetState: (DeviceState) -> Any = { }
     val onStateChange: MutableList<(Device) -> Any> = ArrayList()
-    var onGetState: (Device) -> DeviceState = { DeviceState("") }
+    var onGetState: (Device) -> DeviceState = { this.initDeviceState }
 
     val settings: MutableMap<String, String> = HashMap()
 

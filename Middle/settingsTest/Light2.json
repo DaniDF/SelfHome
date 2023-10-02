@@ -1,0 +1,8 @@
+{
+"config": "light",
+"name": "Light 2",
+"command_topic": "Test/out/Light2/switch",
+"state_topic": "Test/out/Light2/state",
+"unique_id": "Test_Light2",
+"qos": 0
+}

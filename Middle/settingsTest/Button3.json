@@ -1,0 +1,7 @@
+{
+"config": "binary_sensor",
+"name": "Button 3",
+"state_topic": "Test/in/Button3/state",
+"unique_id": "test_Button3",
+"qos": 0
+}

@@ -40,30 +40,35 @@ class HomeAssistant(private val mqttClient: IMqttClient, private val controller:
     }
 
     internal fun declareDevice(device: Device) {
-        val deviceType = device.settings["config"]!!
-        device.settings.remove("config")
-        val gson = GsonBuilder().create()
-        val json = gson.toJson(device.settings)
-
-        if(device.settings["expire_after"] != null) {
-
-            val expireTimeout: Long = max(1L, device.settings["expire_after"]!!.toFloat().toLong() / 30)
-
-            Thread {
-                while(true) {
-                    device.state
-                    this.updateDeviceStatus(device)
-                    Thread.sleep(expireTimeout * 1000)
-                }
-            }.apply {
-                this.priority = Thread.MIN_PRIORITY
-            }.start()
+        if(device.settings["config"] == null) {
+            println("${device.name} does not have any configuration")
 
         } else {
-            device.onStateChange += { this.updateDeviceStatus(it) }
-        }
+            val deviceType = device.settings["config"]!!
+            device.settings.remove("config")
+            val gson = GsonBuilder().create()
+            val json = gson.toJson(device.settings)
 
-        this.mqttClient.publish("homeassistant/$deviceType/${device.name.replace(" ", "_")}/config", json.toByteArray(), 1, true)
+            if(device.settings["expire_after"] != null) {
+
+                val expireTimeout: Long = max(1L, device.settings["expire_after"]!!.toFloat().toLong() / 30)
+
+                Thread {
+                    while(true) {
+                        device.state
+                        this.updateDeviceStatus(device)
+                        Thread.sleep(expireTimeout * 1000)
+                    }
+                }.apply {
+                    this.priority = Thread.MIN_PRIORITY
+                }.start()
+
+            } else {
+                device.onStateChange += { this.updateDeviceStatus(it) }
+            }
+
+            this.mqttClient.publish("homeassistant/$deviceType/${device.name.replace(" ", "_")}/config", json.toByteArray(), 1, true)
+        }
     }
 
     private fun updateDeviceStatus(device: Device) {

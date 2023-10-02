@@ -10,16 +10,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="065f19c3-a7a3-47a4-bab1-3acb60942d21" name="Changes" comment="Bug fix non Int QOS">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/settingsTest/Button0.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/settingsTest/Button1.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/settingsTest/Button2.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/settingsTest/Button3.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/settingsTest/Light0.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/settingsTest/Light1.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/settingsTest/Light2.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/settingsTest/Light3.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/settingsTest/middle_conf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/kotlin/it/dani/TestMain.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/kotlin/it/dani/controller/TestController.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings/luce remota.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings/luce1.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings/middle_conf" beforeDir="false" afterPath="$PROJECT_DIR$/settings/middle_conf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings/pulsante remoto.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings/pulsante1.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/dani/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/it/dani/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Temp-ae43-5001-eda2-0d66b3b1686/.lck" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/selfhome-d8e1-40ef-9e59-0d66b3bc525e/.lck" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/dani/homeassistant/HomeAssistant.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/it/dani/homeassistant/HomeAssistant.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/dani/homeassistant/HomeAssistantService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/it/dani/homeassistant/HomeAssistantService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/dani/listener/RequestListener.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/it/dani/listener/RequestListener.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/dani/model/Device.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/it/dani/model/Device.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/dani/selfhome/SelfHomeController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/it/dani/selfhome/SelfHomeController.kt" afterDir="false" />
     </list>
@@ -59,10 +66,11 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Daniele/Documents/MEGA/Progetti/Middle/src/main/kotlin/it/dani/listener/parser&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Daniele/Documents/MEGA/Progetti/SelfHome/NewRefactoring/SelfHome/Middle/settingsTest&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -75,6 +83,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Daniele\Documents\MEGA\Progetti\SelfHome\NewRefactoring\SelfHome\Middle\settingsTest" />
       <recent name="C:\Users\Daniele\Documents\MEGA\Progetti\Middle\src\main\kotlin\it\dani\listener\parser" />
       <recent name="C:\Users\Daniele\Documents\MEGA\Progetti\Middle\lib" />
       <recent name="C:\Users\Daniele\Documents\MEGA\Progetti\Middle\src\main\kotlin\it\dani" />
@@ -87,16 +96,29 @@
       <recent name="it.dani.listener.parser" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Kotlin.TestMainKt">
     <configuration name="MainKt" type="JetRunConfigurationType" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="it.dani.MainKt" />
       <module name="Middle" />
-      <option name="PROGRAM_PARAMETERS" value="-c &quot;C:\Users\Daniele\Documents\MEGA\Progetti\SelfHome\NewRefactoring\SelfHome\Middle\settings\middle_conf&quot;" />
+      <option name="PROGRAM_PARAMETERS" value="-c &quot;settings\middle_conf&quot;" />
       <shortenClasspath name="NONE" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TestMainKt" type="JetRunConfigurationType">
+      <option name="MAIN_CLASS_NAME" value="it.dani.TestMainKt" />
+      <module name="Middle" />
+      <option name="PROGRAM_PARAMETERS" value="-c &quot;settingsTest\middle_conf&quot;" />
+      <shortenClasspath name="NONE" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Kotlin.MainKt" />
+      <item itemvalue="Kotlin.TestMainKt" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -118,7 +140,10 @@
       <workItem from="1696004060687" duration="4685000" />
       <workItem from="1696071154460" duration="1454000" />
       <workItem from="1696082063208" duration="520000" />
-      <workItem from="1696094457838" duration="2474000" />
+      <workItem from="1696094457838" duration="3248000" />
+      <workItem from="1696149307366" duration="9749000" />
+      <workItem from="1696241422546" duration="4893000" />
+      <workItem from="1696259730190" duration="2809000" />
     </task>
     <task id="LOCAL-00001" summary="Bug fix non Int QOS">
       <option name="closed" value="true" />
@@ -141,5 +166,12 @@
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>
     <settings-migrated>true</settings-migrated>
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="JetRunConfigurationType">
+        <watch expression="((HashSet)((TestController)((HomeAssistant)this).controller).devs).toArray()[4]" custom="java.util.HashSet,it.dani.controller.TestController,it.dani.homeassistant.HomeAssistant" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

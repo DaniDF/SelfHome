@@ -11,13 +11,13 @@ object HomeAssistantService {
     private const val TOPIC = "SelfHome"
     private const val UUID = "$TOPIC-d8e1-40ef-9e59-0d66b3bc525e"
 
-    fun startService(ipBroker: String, portBroker: Int, settingsPath: File, controller: Controller): HomeAssistant {
+    fun startService(ipBroker: String, portBroker: Int, settingsPath: File, controller: Controller, topic: String = TOPIC, uuid: String = UUID): HomeAssistant {
         val uriBroker = "tcp://$ipBroker:$portBroker"
-        val mqttClient = MqttClient(uriBroker, UUID)
+        val mqttClient = MqttClient(uriBroker, uuid)
 
         val ha = HomeAssistant(mqttClient, controller).apply {
             this.connect()
-            this.subscribe(TOPIC)
+            this.subscribe(topic)
         }
 
         controller.onNewDevice += { dev ->
