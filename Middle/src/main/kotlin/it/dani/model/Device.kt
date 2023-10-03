@@ -10,6 +10,10 @@ data class Device(
     val onStateChange: MutableList<(Device) -> Any> = ArrayList()
     var onGetState: (Device) -> DeviceState = { this.initDeviceState }
 
+    var onSetBrightness: (DeviceState) -> Any = { }
+    val onBrightnessChange: MutableList<(Device) -> Any> = ArrayList()
+    var onGetBrightness: (Device) -> DeviceState = { this.initDeviceState }
+
     val settings: MutableMap<String, String> = HashMap()
 
     var state: DeviceState = this.initDeviceState
@@ -35,8 +39,31 @@ data class Device(
             return field
         }
 
+    var brightness: DeviceState = this.initDeviceState
+        set(value) {
+            if(field != value) {
+                try {
+                    this.onSetBrightness(value)
+                    field = value
+                    this.onBrightnessChange.forEach { it(this) }
+                } catch (e: DeviceStateChangeException) {
+                    throw DeviceStateChangeException(e.message)
+                }
+            }
+        }
+        get() {
+            val value = this.onGetBrightness(this)
+
+            if(field != value) {
+                field = value
+                this.onBrightnessChange.forEach { it(this) }
+            }
+
+            return field
+        }
+
     override fun toString(): String {
-        return "$name [$state] $settings"
+        return "$name [$state] [$brightness] $settings"
     }
 
     override fun equals(other: Any?): Boolean {

@@ -13,9 +13,14 @@ separator
 //COMUNICATION_GRAMMAR
 
 command
-    :   'GET' SPACE+ name=WORD                           #commandGet
-    |   'SET' SPACE+ name=WORD SPACE+ value=NUMBER       #commandSet
+    :   'GET' SPACE+ arg=argument SPACE+ name=WORD                           #commandGet
+    |   'SET' SPACE+ arg=argument SPACE+ name=WORD SPACE+ value=NUMBER       #commandSet
     |   'LST'                                            #commandLst
+    ;
+
+argument
+    :   'BRIGH'   #argumentBri
+    |   'STATE'   #argumentSta
     ;
 
 NUMBER

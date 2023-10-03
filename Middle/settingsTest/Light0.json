@@ -4,5 +4,7 @@
 "command_topic": "Test/out/Light0/switch",
 "state_topic": "Test/out/Light0/state",
 "unique_id": "Test_Light0",
-"qos": 0
+"qos": 0,
+"brightness_state_topic": "Test/brightness/Light0/status",
+"brightness_command_topic": "Test/brightness/Light0/set"
 }

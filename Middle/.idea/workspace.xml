@@ -9,26 +9,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="065f19c3-a7a3-47a4-bab1-3acb60942d21" name="Changes" comment="Bug fix non Int QOS">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settingsTest/Button0.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settingsTest/Button1.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settingsTest/Button2.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settingsTest/Button3.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settingsTest/Light0.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settingsTest/Light1.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settingsTest/Light2.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settingsTest/Light3.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settingsTest/middle_conf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/kotlin/it/dani/TestMain.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/kotlin/it/dani/controller/TestController.kt" afterDir="false" />
+    <list default="true" id="065f19c3-a7a3-47a4-bab1-3acb60942d21" name="Changes" comment="Implemented test classes">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/it/dani/icontroller/BrightnessController.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Temp-ae43-5001-eda2-0d66b3b1686/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/selfhome-d8e1-40ef-9e59-0d66b3bc525e/.lck" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/grammar/DFLite.g4" beforeDir="false" afterPath="$PROJECT_DIR$/grammar/DFLite.g4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings/middle_conf" beforeDir="false" afterPath="$PROJECT_DIR$/settings/middle_conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings/pulsante scrivania.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/settingsTest/Light0.json" beforeDir="false" afterPath="$PROJECT_DIR$/settingsTest/Light0.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/dani/homeassistant/HomeAssistant.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/it/dani/homeassistant/HomeAssistant.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/dani/homeassistant/HomeAssistantService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/it/dani/homeassistant/HomeAssistantService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/dani/listener/parser/DFLite.interp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/dani/listener/parser/DFLite.tokens" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/dani/listener/parser/DFLiteBaseListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/dani/listener/parser/DFLiteBaseVisitor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/dani/listener/parser/DFLiteLexer.interp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/dani/listener/parser/DFLiteLexer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/dani/listener/parser/DFLiteLexer.tokens" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/dani/listener/parser/DFLiteListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/dani/listener/parser/DFLiteParser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/dani/listener/parser/DFLiteVisitor.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/dani/model/Device.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/it/dani/model/Device.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/dani/selfhome/SelfHomeController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/it/dani/selfhome/SelfHomeController.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/it/dani/controller/TestController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/it/dani/controller/TestController.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gestore_rele/gestore_rele.ino" beforeDir="false" afterPath="$PROJECT_DIR$/../gestore_rele/gestore_rele.ino" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,8 +41,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Kotlin Interface" />
         <option value="Kotlin Class" />
+        <option value="Kotlin Interface" />
       </list>
     </option>
   </component>
@@ -60,27 +63,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Daniele/Documents/MEGA/Progetti/SelfHome/NewRefactoring/SelfHome/Middle/settingsTest&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "go.import.settings.migrated": "true",
+    "last_opened_file_path": "C:/Users/Daniele/Documents/MEGA/Progetti/SelfHome/NewRefactoring/SelfHome/Middle/src/main/kotlin/it/dani/listener/parser",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Daniele\Documents\MEGA\Progetti\SelfHome\NewRefactoring\SelfHome\Middle\settingsTest" />
@@ -96,7 +99,7 @@
       <recent name="it.dani.listener.parser" />
     </key>
   </component>
-  <component name="RunManager" selected="Kotlin.TestMainKt">
+  <component name="RunManager" selected="Kotlin.MainKt">
     <configuration name="MainKt" type="JetRunConfigurationType" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="it.dani.MainKt" />
       <module name="Middle" />
@@ -143,7 +146,10 @@
       <workItem from="1696094457838" duration="3248000" />
       <workItem from="1696149307366" duration="9749000" />
       <workItem from="1696241422546" duration="4893000" />
-      <workItem from="1696259730190" duration="2809000" />
+      <workItem from="1696259730190" duration="5227000" />
+      <workItem from="1696320417381" duration="9639000" />
+      <workItem from="1696340228949" duration="2531000" />
+      <workItem from="1696347210706" duration="2913000" />
     </task>
     <task id="LOCAL-00001" summary="Bug fix non Int QOS">
       <option name="closed" value="true" />
@@ -153,7 +159,15 @@
       <option name="project" value="LOCAL" />
       <updated>1695981722921</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Implemented test classes">
+      <option name="closed" value="true" />
+      <created>1696263454535</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1696263454535</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -161,7 +175,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Bug fix non Int QOS" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bug fix non Int QOS" />
+    <MESSAGE value="Implemented test classes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented test classes" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>

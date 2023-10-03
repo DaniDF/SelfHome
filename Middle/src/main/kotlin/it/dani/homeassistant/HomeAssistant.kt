@@ -22,6 +22,16 @@ class HomeAssistant(private val mqttClient: IMqttClient, private val controller:
                         println("Error while changing state $dev\n${e.message}")
                     }
                 }
+
+            this@HomeAssistant.controller.devs
+                .find { dev -> dev.settings.contains("brightness_command_topic") && dev.settings["brightness_command_topic"] == p0 }
+                ?.let { dev ->
+                    try {
+                        dev.brightness = DeviceState(p1)
+                    } catch (e: DeviceStateChangeException) {
+                        println("Error while changing brightness $dev\n${e.message}")
+                    }
+                }
         }
     }
 
@@ -67,6 +77,10 @@ class HomeAssistant(private val mqttClient: IMqttClient, private val controller:
                 device.onStateChange += { this.updateDeviceStatus(it) }
             }
 
+            if(device.settings["brightness_state_topic"] != null) {
+                device.onBrightnessChange += { this.updateDeviceBrightness(it) }
+            }
+
             this.mqttClient.publish("homeassistant/$deviceType/${device.name.replace(" ", "_")}/config", json.toByteArray(), 1, true)
         }
     }
@@ -76,5 +90,11 @@ class HomeAssistant(private val mqttClient: IMqttClient, private val controller:
         val mqttMessage = MqttMessage(messageString.toByteArray())
         this.mqttClient.publish(device.settings["state_topic"], mqttMessage)
 
+    }
+
+    private fun updateDeviceBrightness(device: Device) {
+        val messageString = device.brightness.toString()
+        val mqttMessage = MqttMessage(messageString.toByteArray())
+        this.mqttClient.publish(device.settings["brightness_state_topic"], mqttMessage)
     }
 }

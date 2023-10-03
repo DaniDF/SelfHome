@@ -130,7 +130,14 @@ void loop() {
         {
           if(value.pin < 100)
           {
-            digitalWrite(value.pin,!value.value);
+            //digitalWrite(value.pin,!value.value);
+            if(value.value <= 1) {
+              digitalWrite(value.pin,!value.value);
+            }
+            else {
+              analogWrite(value.pin,value.value);
+            }
+
             USB.write(IO_OK_RESPONSE);
           }
           else if(((value.pin/100) - 1) < countPeriferics)
