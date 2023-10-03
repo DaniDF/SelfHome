@@ -1,0 +1,17 @@
+T__0=1
+T__1=2
+T__2=3
+T__3=4
+T__4=5
+NUMBER=6
+WORD=7
+SPACE=8
+NL=9
+WS=10
+'GET'=1
+'SET'=2
+'LST'=3
+'BRIGH'=4
+'STATE'=5
+' '=8
+'\n'=9

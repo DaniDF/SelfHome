@@ -1,0 +1,12 @@
+{
+"config": "light",
+"name": "Luce scrivania",
+"command_topic": "SelfHome/out/luce_scrivania/switch",
+"payload_off": "0",
+"payload_on": "1",
+"state_topic": "SelfHome/out/luce_scrivania/state",
+"unique_id": "selfhome_luce_scrivania",
+"qos": 0,
+"brightness_state_topic": "SelfHome/brightness/luce_scrivania/status",
+"brightness_command_topic": "SelfHome/brightness/luce_scrivania/set"
+}

@@ -9,30 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="065f19c3-a7a3-47a4-bab1-3acb60942d21" name="Changes" comment="Implemented test classes">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/it/dani/icontroller/BrightnessController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grammar/DFLite.g4" beforeDir="false" afterPath="$PROJECT_DIR$/grammar/DFLite.g4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings/middle_conf" beforeDir="false" afterPath="$PROJECT_DIR$/settings/middle_conf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings/pulsante scrivania.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/settingsTest/Light0.json" beforeDir="false" afterPath="$PROJECT_DIR$/settingsTest/Light0.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/dani/homeassistant/HomeAssistant.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/it/dani/homeassistant/HomeAssistant.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/dani/listener/parser/DFLite.interp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/dani/listener/parser/DFLite.tokens" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/dani/listener/parser/DFLiteBaseListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/dani/listener/parser/DFLiteBaseVisitor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/dani/listener/parser/DFLiteLexer.interp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/dani/listener/parser/DFLiteLexer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/dani/listener/parser/DFLiteLexer.tokens" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/dani/listener/parser/DFLiteListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/dani/listener/parser/DFLiteParser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/dani/listener/parser/DFLiteVisitor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/dani/model/Device.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/it/dani/model/Device.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/dani/selfhome/SelfHomeController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/it/dani/selfhome/SelfHomeController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/it/dani/controller/TestController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/it/dani/controller/TestController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../gestore_rele/gestore_rele.ino" beforeDir="false" afterPath="$PROJECT_DIR$/../gestore_rele/gestore_rele.ino" afterDir="false" />
-    </list>
+    <list default="true" id="065f19c3-a7a3-47a4-bab1-3acb60942d21" name="Changes" comment="Added brightness control" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -149,7 +126,7 @@
       <workItem from="1696259730190" duration="5227000" />
       <workItem from="1696320417381" duration="9639000" />
       <workItem from="1696340228949" duration="2531000" />
-      <workItem from="1696347210706" duration="2913000" />
+      <workItem from="1696347210706" duration="2945000" />
     </task>
     <task id="LOCAL-00001" summary="Bug fix non Int QOS">
       <option name="closed" value="true" />
@@ -167,7 +144,15 @@
       <option name="project" value="LOCAL" />
       <updated>1696263454535</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added brightness control">
+      <option name="closed" value="true" />
+      <created>1696350971681</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1696350971681</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -176,7 +161,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Bug fix non Int QOS" />
     <MESSAGE value="Implemented test classes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented test classes" />
+    <MESSAGE value="Added brightness control" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added brightness control" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>
