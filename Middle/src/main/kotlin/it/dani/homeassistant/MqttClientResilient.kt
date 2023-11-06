@@ -14,6 +14,7 @@ class MqttClientResilient(serverURI: String, clientId: String) : MqttClient(serv
                 super.publish(topic, message)
                 flagStop = true
             } catch (e: MqttException) {
+                super.reconnect()
                 count--
             }
         }
