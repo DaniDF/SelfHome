@@ -3,7 +3,6 @@ package it.dani.homeassistant
 import com.google.gson.GsonBuilder
 import it.dani.icontroller.Controller
 import it.dani.model.Device
-import org.eclipse.paho.mqttv5.client.MqttClient
 import java.io.File
 
 object HomeAssistantService {
@@ -13,7 +12,7 @@ object HomeAssistantService {
 
     fun startService(ipBroker: String, portBroker: Int, settingsPath: File, controller: Controller, topic: String = TOPIC, uuid: String = UUID): HomeAssistant {
         val uriBroker = "tcp://$ipBroker:$portBroker"
-        val mqttClient = MqttClient(uriBroker, uuid)
+        val mqttClient = MqttClientResilient(uriBroker, uuid)
 
         val ha = HomeAssistant(mqttClient, controller).apply {
             this.connect()

@@ -8,7 +8,7 @@ import org.eclipse.paho.mqttv5.common.MqttMessage
 import org.eclipse.paho.mqttv5.common.packet.MqttProperties
 
 class MqttCallbackImp(private var debug: Boolean = false) : MqttCallback {
-    val listeners: MutableList<(String, String) -> Unit> = ArrayList()
+    val onMessage: MutableList<(String, String) -> Unit> = ArrayList()
     override fun disconnected(p0: MqttDisconnectResponse?) {
 
     }
@@ -23,7 +23,7 @@ class MqttCallbackImp(private var debug: Boolean = false) : MqttCallback {
         }
         p0?.let {
             val payload = String(p1?.payload ?: ByteArray(0))
-            this.listeners.forEach { it(p0, payload) }
+            this.onMessage.forEach { it(p0, payload) }
         }
     }
 

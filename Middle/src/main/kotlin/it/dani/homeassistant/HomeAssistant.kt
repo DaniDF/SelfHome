@@ -11,8 +11,8 @@ import kotlin.math.max
 
 class HomeAssistant(private val mqttClient: IMqttClient, private val controller: Controller) {
 
-    private val mqttCallback = MqttCallbackImp().apply {
-        listeners += { p0, p1 ->
+    private val mqttCallback = MqttCallbackImp(debug = true).apply {
+        this.onMessage += { p0, p1 ->
             this@HomeAssistant.controller.devs
                 .find { dev -> dev.settings.contains("command_topic") && dev.settings["command_topic"] == p0 }
                 ?.let { dev ->
