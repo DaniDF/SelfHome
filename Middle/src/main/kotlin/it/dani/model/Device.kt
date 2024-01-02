@@ -18,14 +18,12 @@ data class Device(
 
     var state: DeviceState = this.initDeviceState
         set(value) {
-            if(field != value) {
-                try {
-                    this.onSetState(value)
-                    field = value
-                    this.onStateChange.forEach { it(this) }
-                } catch (e: DeviceStateChangeException) {
-                    throw DeviceStateChangeException(e.message)
-                }
+            try {
+                this.onSetState(value)
+                field = value
+                this.onStateChange.forEach { it(this) }
+            } catch (e: DeviceStateChangeException) {
+                throw e
             }
         }
         get() {
@@ -47,7 +45,7 @@ data class Device(
                     field = value
                     this.onBrightnessChange.forEach { it(this) }
                 } catch (e: DeviceStateChangeException) {
-                    throw DeviceStateChangeException(e.message)
+                    throw e
                 }
             }
         }
