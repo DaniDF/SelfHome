@@ -9,14 +9,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="065f19c3-a7a3-47a4-bab1-3acb60942d21" name="Changes" comment="Added brightness control">
-      <change afterPath="$PROJECT_DIR$/SelfHome-d8e1-40ef-9e59-0d66b3bc525e/.lck" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/it/dani/homeassistant/MqttClientResilient.kt" afterDir="false" />
+    <list default="true" id="065f19c3-a7a3-47a4-bab1-3acb60942d21" name="Changes" comment="Added resilience to broker failure">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/settings/middle_conf" beforeDir="false" afterPath="$PROJECT_DIR$/settings/middle_conf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/dani/homeassistant/HomeAssistant.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/it/dani/homeassistant/HomeAssistant.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/dani/homeassistant/HomeAssistantService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/it/dani/homeassistant/HomeAssistantService.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/dani/homeassistant/MqttCallbackImp.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/it/dani/homeassistant/MqttCallbackImp.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/dani/homeassistant/MqttClientResilient.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/it/dani/homeassistant/MqttClientResilient.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/dani/model/Device.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/it/dani/model/Device.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,11 +57,13 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Daniele/Documents/MEGA/Progetti/SelfHome/NewRefactoring/SelfHome/Middle/src/main/kotlin/it/dani/listener/parser&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Daniele/Documents/MEGA/Progetti/SelfHome/NewRefactoring/SelfHome/Middle&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
@@ -150,7 +151,14 @@
       <workItem from="1697728280675" duration="360000" />
       <workItem from="1697730496928" duration="1273000" />
       <workItem from="1699281321021" duration="950000" />
-      <workItem from="1699282291439" duration="2062000" />
+      <workItem from="1699282291439" duration="3488000" />
+      <workItem from="1700138615770" duration="419000" />
+      <workItem from="1700489255058" duration="1100000" />
+      <workItem from="1700490845158" duration="17000" />
+      <workItem from="1700667407777" duration="727000" />
+      <workItem from="1700668306435" duration="2515000" />
+      <workItem from="1704219977367" duration="646000" />
+      <workItem from="1704220965560" duration="441000" />
     </task>
     <task id="LOCAL-00001" summary="Bug fix non Int QOS">
       <option name="closed" value="true" />
@@ -184,7 +192,23 @@
       <option name="project" value="LOCAL" />
       <updated>1696351222945</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added resilience to broker failure">
+      <option name="closed" value="true" />
+      <created>1699284583679</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1699284583680</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Added resilience to broker failure">
+      <option name="closed" value="true" />
+      <created>1699285527656</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1699285527656</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -194,7 +218,8 @@
     <MESSAGE value="Bug fix non Int QOS" />
     <MESSAGE value="Implemented test classes" />
     <MESSAGE value="Added brightness control" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added brightness control" />
+    <MESSAGE value="Added resilience to broker failure" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added resilience to broker failure" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>

@@ -33,6 +33,10 @@ class HomeAssistant(private val mqttClient: IMqttClient, private val controller:
                     }
                 }
         }
+
+        this.onError += { p0 ->
+            println("Error occurred: ${p0.message}\n${p0.printStackTrace()}")
+        }
     }
 
     fun connect() {

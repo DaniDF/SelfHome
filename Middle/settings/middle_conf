@@ -2,7 +2,7 @@
 "listening_port": 4000,
 "selfhome_address": "10.0.0.106",
 "selfhome_port": 4001,
-"broker_address": "10.0.254.103",
+"broker_address": "192.168.85.158",
 "broker_port": 1883,
 "settings_path": "settings",
 "way_net": "229.255.255.250",
