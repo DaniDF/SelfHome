@@ -1,8 +1,8 @@
 {
 "listening_port": 4000,
-"selfhome_address": "10.0.0.106",
+"selfhome_address": "raspi.df",
 "selfhome_port": 4001,
-"broker_address": "192.168.85.158",
+"broker_address": "mqtt.df",
 "broker_port": 1883,
 "settings_path": "settings",
 "way_net": "229.255.255.250",
